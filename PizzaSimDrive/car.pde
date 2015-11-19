@@ -14,6 +14,7 @@ class Car {
   public void draw()
   {
     fill(c);
+    noStroke();
     pushMatrix();
     translate(loc.x, loc.y);
     rotate(angle+PI/2);
