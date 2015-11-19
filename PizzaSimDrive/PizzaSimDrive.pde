@@ -4,10 +4,11 @@ color[] grass;
 int grid; //num to simplify translations between graph paper and screen
 //building array
 Building[] buildings;
+//car
+Car myCar;
 void setup()
 {
   size(900,585);
-  
   
   grid = 45;
   //Setup grass color array
@@ -22,6 +23,8 @@ void setup()
   //buildings
   buildings = new Building[1];
   buildings[0] = new Building(new PVector(450,270),new PVector(720,360),new PVector(5,5));
+  //car
+  myCar = new Car(new PVector(9*grid,5*grid), 0,color(200,0,30));
 }
 
 void draw()
@@ -30,8 +33,27 @@ void draw()
   
   drawbackground();
   
+  myCar.draw();
 }
-
+void keyPressed()
+{
+  if(key == 119) // 'w'
+  {
+    myCar.accelerate(1);
+  }
+  if(key == 115) // 's'
+  {
+    myCar.accelerate(-1);
+  }
+  if(key == 97) //'a'
+  {
+    myCar.turn(-PI/32);
+  }
+  if(key == 100) //'d'
+  {
+    myCar.turn(PI/32);
+  }
+}
 void drawbackground()
 {
   //grass
