@@ -36,22 +36,23 @@ class Car {
   public PVector getLoc() {
     return loc;
   }
-}
 
-void updatemyCar()
-{
-  if (w)
+
+  void updatemyCar()
   {
-    myCar.accelerate(.05);
-  }
-  if (a) {
-    myCar.turn(-PI/64);
-  }
-  if (s) {
-    myCar.accelerate(-.05);
-  }
-  if (d) {
-    myCar.turn(PI/64);
+    if (w)
+    {
+      myCar.accelerate(.05);
+    }
+    if (a) {
+      myCar.turn(-PI/64);
+    }
+    if (s) {
+      myCar.accelerate(-.05);
+    }
+    if (d) {
+      myCar.turn(PI/64);
+    }
   }
 }
 void keyPressed()

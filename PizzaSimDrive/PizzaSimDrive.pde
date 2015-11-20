@@ -16,7 +16,7 @@ void setup()
 {
   size(900, 585);
 
-  grid = 45;
+  grid = 50;
   //Setup grass color array
   grass = new color[140];
   for (int i = 0; i < grass.length; i++)
@@ -41,7 +41,7 @@ void draw()
   drawbackground();
 
   myCar.draw();
-  updatemyCar();
+  myCar.updatemyCar();
 }
 
 void drawbackground()
