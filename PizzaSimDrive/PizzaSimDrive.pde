@@ -29,21 +29,12 @@ void setupDrive()
 {
   city = loadImage("city.jpg");
   grid = 50;
-  //Setup grass color array
-  grass = new color[140];
-  for (int i = 0; i < grass.length; i++)
-  {
-    grass[i] = lerpColor(#1CFF00, #237600, random(1));
-  }
-  //road colors
-  mainRdC = color(50);
-  sideRdC = color(150);
-  walkC = color(180);
+  
   //buildings
   buildings = new Building[1];
   buildings[0] = new Building(new PVector(450, 270), new PVector(720, 360));
   //car
-  myCar = new Car(new PVector(9*grid, 5*grid), 0, color(200, 0, 30));
+  myCar = new Car(new PVector(6.5*grid, 4.2*grid), 0, color(200, 0, 30));
   setupDelLoc();
   dispShop = false;
 }

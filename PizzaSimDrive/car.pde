@@ -18,16 +18,17 @@ class Car {
     pushMatrix();
     translate(loc.x, loc.y);
     rotate(angle+PI/2);
-    rect(-6, -10, 6, 10);
+    rectMode(CORNERS);
+    rect(-6, -12, 6, 12);
     popMatrix();    
     loc.x += vel*cos(angle);
     loc.y += vel*sin(angle);
-    vel *= .95;
+    vel *= .96;
   }
 
   public void turn(float angle)
   {
-    this.angle += angle;
+    this.angle += angle*map(vel,0,1.5,0,1); //rotate proportional to speed
   }
   public void accelerate(float speed)
   {
@@ -42,7 +43,7 @@ class Car {
   {
     if (w)
     {
-      myCar.accelerate(.15);
+      myCar.accelerate(.1);
     }
     if (a) {
       myCar.turn(-PI/64);

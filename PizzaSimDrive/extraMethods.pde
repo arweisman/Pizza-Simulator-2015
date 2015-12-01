@@ -12,7 +12,7 @@ void setupDelLoc()
   delLoc[3] = new PVector(614, 52, 3);
   delLoc[4] = new PVector(677, 55, 3);
   delLoc[5] = new PVector(714, 55, 3);
-  delLoc[6] = new PVector(775, 57, 2);
+  delLoc[6] = new PVector(775, 57, 3);
   delLoc[7] = new PVector(873, 57, 3);
   delLoc[8] = new PVector(889, 98, 3);
   delLoc[9] = new PVector(787, 99, 3);
@@ -56,6 +56,8 @@ void setupDelLoc()
   delLoc[47] = new PVector(741, 208, 3);
   delLoc[48] = new PVector(764, 207, 3);
   delLoc[49] = new PVector(863, 206, 3);
+  
+  delLoc[(int)random(delLoc.length)].z = 2;
 }
 void drawDelLoc()
 {

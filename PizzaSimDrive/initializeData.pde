@@ -106,3 +106,13 @@
 ////colors
 //color mainRdC, sideRdC, walkC; // colors for roads, main/side
 //color[] grass;
+//Setup grass color array
+  //grass = new color[140];
+  //for (int i = 0; i < grass.length; i++)
+  //{
+  //  grass[i] = lerpColor(#1CFF00, #237600, random(1));
+  //}
+  ////road colors
+  //mainRdC = color(50);
+  //sideRdC = color(150);
+  //walkC = color(180);
