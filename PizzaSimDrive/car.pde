@@ -42,7 +42,7 @@ class Car {
   {
     if (w)
     {
-      myCar.accelerate(.05);
+      myCar.accelerate(.15);
     }
     if (a) {
       myCar.turn(-PI/64);
@@ -72,6 +72,10 @@ void keyPressed()
   if (key == 100) //'d'
   {
     d = true;
+  }
+  if (key == 32)
+  {
+    saveFrame("City.jpg");
   }
 }
 void keyReleased()

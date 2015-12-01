@@ -3,15 +3,10 @@ class Building
 {
   PVector topLeft;
   PVector bottomRight;
-  PVector deliveryPoint;
-  boolean isDestination;
 
-  public Building(PVector topLeft, PVector bottomRight, PVector deliveryPoint) {
+  public Building(PVector topLeft, PVector bottomRight) {
     this.topLeft = topLeft;
     this.bottomRight = bottomRight;
-    this.deliveryPoint = deliveryPoint;
-
-    isDestination = false;
   }
 
 
@@ -26,16 +21,5 @@ class Building
     } else {
       return false;
     }
-  }
-
-  public PVector getDeliveryPt()
-  {
-    return deliveryPoint;
-  }
-
-  //set the building as the destination;
-  public void setDestination()
-  {
-    isDestination = true;
   }
 }
