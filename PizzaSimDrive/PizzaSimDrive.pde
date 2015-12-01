@@ -29,7 +29,7 @@ void setupDrive()
 {
   city = loadImage("city.jpg");
   grid = 50;
-  
+
   //buildings
   buildings = new Building[1];
   buildings[0] = new Building(new PVector(450, 270), new PVector(720, 360));
@@ -39,34 +39,41 @@ void setupDrive()
   dispShop = false;
 }
 void drawDrive() {
-  image(city,0,0);
+  image(city, 0, 0);
   myCar.draw();
   myCar.updatemyCar();
   drawDelLoc();
   checkLoc();
-
 }
 //Method to check if car is at delivery location
 void checkLoc()
 {
-  for(PVector p: delLoc)
+  PVector car = myCar.getLoc();
+  for (PVector p : delLoc)
   {
-    PVector car = myCar.getLoc();
+
     //check if car is at delivery location
-    if((dist(car.x,car.y,p.x,p.y) < 20) && p.z == 2)
+    if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2)
     {
       println("PIZZA DELIVERED SUCCESSFULLY");
       p.z = 3;
       dispShop = true;
     }
     //check if car at shop
-    if(dist(car.x,car.y,delLoc[0].x,delLoc[0].y) < 20 && dispShop)
+    if (dist(car.x, car.y, delLoc[0].x, delLoc[0].y) < 20 && dispShop)
     {
       dispShop = false;
       delLoc[(int)random(delLoc.length)].z = 2;
     }
   }
-  
+  //tell user to return to screen area
+  if(car.x > width || car.x < 0 || car.y > height || car.y < 0){
+    fill(50);
+    rectMode(CORNERS);
+    rect(width/4,height/4,3*width/4,3*height/4);
+    fill(255);
+    text("Return to delivery area!",width*.45,height/2);
+  }
 }
 
 
