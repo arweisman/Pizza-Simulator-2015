@@ -44,7 +44,7 @@ void drawIntro2() {
     noStroke();
     rect(50, 50, 800, 500, 25);
     
-    //if(waveR < 
+    
     
     drawGuy();
 }
