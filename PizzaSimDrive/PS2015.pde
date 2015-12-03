@@ -52,6 +52,7 @@ void mousePressed() {  // change the scene whenever the mouse is clicked
             sceneCount++;
             break;  
         case pizzaScene:
+            mouseClickedForPizza();
             break;
         case driveScene:
             sceneCount = pizzaScene;

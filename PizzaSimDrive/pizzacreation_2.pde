@@ -195,6 +195,7 @@ void mushroom(float mushx, float mushy) {
 //pineapple
 void pineapple(float pinex, float piney) {
   noStroke();
+  pushMatrix();
   translate(pinex, piney);
   rotate((pinex+piney)*3);
   translate(-pinex, -piney);
