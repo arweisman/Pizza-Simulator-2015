@@ -1,8 +1,9 @@
 
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
-int totalIngredientTypes = 3;
+int totalIngredientTypes = 6;
 int targetIngredientNum = 10;
 
+  
 int ingredientSide[]; //target side for ingredients of each type (x[0] = 0 means ing 1 is on the whole pizza)
 int ingAmount[]; //number of ingredients placed on the pizza for each type
 ArrayList<PVector> ingredientLoc; //x & y = ingredient location, z = ingredient type
@@ -94,19 +95,25 @@ void drawPizzaCreation() {
   //place selected ingredients at array of locations on pizza
   for (PVector p : ingredientLoc) {
     if (p.z == 0) {
-      fill(255);
-      ellipse(p.x, p.y, 30, 30);
+      olive(p.x, p.y);
     }
     if (p.z == 1) {
-      fill(200);
-      ellipse(p.x, p.y, 30, 30);
+      pepperoni(p.x, p.y);
     }
     if (p.z == 2) {
-      fill(150);
-      ellipse(p.x, p.y, 30, 30);
+      greenpepper(p.x, p.y);
     }
+     if (p.z == 3) {
+      mushroom(p.x, p.y);
   }
+   if (p.z == 4) {
+      pineapple(p.x, p.y);
+   }
+   if (p.z == 5) {
+      onion(p.x, p.y);
+   } 
   drawArm();
+}
 }
 
 void mouseClicked() {
@@ -135,4 +142,77 @@ void drawArm() {
   fill(0);
   ellipse(0, 0, 10, 10);
   popMatrix();
+}
+//olives
+void olive(float olivex, float olivey) {
+  noFill();
+  strokeWeight(10);
+  stroke(0);
+  ellipse(olivex, olivey, 25, 25);
+}
+//pepperoni
+void pepperoni(float pepx, float pepy) {
+  noStroke();
+  fill(200, 0, 0);
+  ellipse(pepx, pepy, 60, 60);
+}
+//green peppers
+void greenpepper(float greenx, float greeny) {
+  noFill();
+  pushMatrix();
+  translate(greenx, greeny);
+  rotate(greenx+greeny);
+  translate(-greenx, -greeny);
+  stroke(18, 191, 4);
+  strokeWeight(10);
+  arc(greenx, greeny, 30, 40, 0, PI);
+  pushMatrix();
+  translate(greenx-10, greeny-12);
+  rotate(2*PI/3);
+  arc(0, 0, 30, 40, 0, PI);
+  popMatrix();
+  pushMatrix();
+  translate(greenx+8, greeny-12);
+  rotate(4*PI/3);
+  arc(0, 0, 30, 40, 0, PI);
+  popMatrix();
+  popMatrix();
+}
+
+//mushroom
+void mushroom(float mushx, float mushy) {
+  pushMatrix();
+  translate(mushx,mushy);
+  rotate(mushx-mushy);
+  translate(-mushx, -mushy);
+  noStroke();
+  fill(255, 242, 165);
+  ellipse(mushx, mushy, 60, 30);
+  fill(75, 61, 36);
+  ellipse(mushx, mushy+7.5, 40, 15);
+  strokeCap(ROUND);
+  strokeWeight(15);
+  stroke(255, 242, 165);
+  line(mushx, mushy, mushx, mushy+20);
+  popMatrix();
+}
+//pineapple
+void pineapple(float pinex, float piney) {
+  noStroke();
+  translate(pinex, piney);
+  rotate((pinex+piney)*3);
+  translate(-pinex, -piney);
+  fill(255, 255, 0);
+  quad(pinex-25, piney-25, pinex+20, piney-15, pinex+3, piney+20, pinex-20, piney+15);
+  popMatrix();
+}
+//onions
+void onion(float onix, float oniy) {
+  noFill();
+  strokeWeight(7);
+  stroke(214, 108, 191);
+  ellipse(onix, oniy, 65, 65);
+  stroke(255);
+  strokeWeight(5);
+  ellipse(onix, oniy, 55, 55);
 }
