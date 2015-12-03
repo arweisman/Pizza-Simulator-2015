@@ -205,11 +205,19 @@ void pineapple(float pinex, float piney) {
 }
 //onions
 void onion(float onix, float oniy) {
+  pushMatrix();
+  translate(onix, oniy);
+  rotate(onix-oniy);
+  translate(-onix, -oniy);
   noFill();
   strokeWeight(7);
+  strokeCap(SQUARE);
   stroke(214, 108, 191);
-  ellipse(onix, oniy, 65, 65);
+  //ellipse(onix, oniy, 65, 65);
+  arc(onix, oniy, 65, 65, 0, 2*PI/3);
   stroke(255);
   strokeWeight(5);
-  ellipse(onix, oniy, 55, 55);
+  arc(onix, oniy, 60, 60, 0, 2*PI/3);
+  //ellipse(onix, oniy, 55, 55);
+  popMatrix();
 }
