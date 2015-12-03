@@ -23,7 +23,7 @@ boolean didRunDriveSetup = false;
         
 float waveR, headR;
 boolean waveLeft = false;
-boolean headLeft = false;
+boolean headLeft = false;  
 
 
 void mousePressed() {  // change the scene whenever the mouse is clicked
@@ -83,8 +83,8 @@ void draw() {
             break;
             
         case drive:
-            setupDrive();
-            
+            setupScene5();
+            drawDrive();
             break;
     }
 }
