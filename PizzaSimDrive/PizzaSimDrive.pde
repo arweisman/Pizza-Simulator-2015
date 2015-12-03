@@ -16,16 +16,16 @@ float rad, sRad;
 //key presses to store if key is held
 boolean w, a, s, d;
 
-void setup()
-{
-  size(900, 585);
-  setupDrive();
-}
+//void setup()
+//{
+//  size(900, 585);
+//  setupDrive();
+//}
 
-void draw()
-{
-  drawDrive();
-}
+//void draw()
+//{
+//  drawDrive();
+//}
 void setupDrive()
 {
   city = loadImage("city.jpg");
@@ -87,10 +87,4 @@ void checkLoc()
       text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
     }
   }
-}
-
-
-void mousePressed()
-{
-  println("new PVector("+mouseX+","+mouseY+");");
 }

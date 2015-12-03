@@ -31,3 +31,10 @@ void setupIntro4() {
         didRunIntro4Setup = true;
     }
 }
+
+void setupScene5() {
+    if(!didRunDriveSetup) {
+        setupDrive();
+        didRunDriveSetup = true;
+    }
+}
