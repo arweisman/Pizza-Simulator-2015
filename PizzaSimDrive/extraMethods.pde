@@ -1,10 +1,35 @@
+void setupBuildings()
+{
+  //buildings
+  buildings = new Building[18];
+  buildings[0] = new Building(new PVector(2, 3), new PVector(147, 48));
+  buildings[1] = new Building(new PVector(1, 107), new PVector(146, 198));
+  buildings[2] = new Building(new PVector(206, 108), new PVector(396, 197));
+  buildings[3] = new Building(new PVector(206, 3), new PVector(396, 47));
+  buildings[4] = new Building(new PVector(1,307),new PVector(146,397));
+  buildings[5] = new Building(new PVector(205,310),new PVector(397,398));
+  buildings[6] = new Building(new PVector(2,458),new PVector(143,581));
+  buildings[7] = new Building(new PVector(206,458),new PVector(395,583));
+  buildings[8] = new Building(new PVector(510,8),new PVector(788,41));
+  buildings[9] = new Building(new PVector(858,8),new PVector(869,44));
+  buildings[10] = new Building(new PVector(505,6),new PVector(793,45));
+  buildings[11] = new Building(new PVector(858,6),new PVector(897,46));
+  buildings[12] = new Building(new PVector(508,110),new PVector(792,194));
+  buildings[13] = new Building(new PVector(857,111),new PVector(899,196));
+  buildings[14] = new Building(new PVector(509,310),new PVector(794,396));
+  buildings[15] = new Building(new PVector(507,460),new PVector(793,545));
+  buildings[16] = new Building(new PVector(855,308),new PVector(897,396));
+  buildings[17] = new Building(new PVector(857,459),new PVector(897,546));
+}
+
+
 void setupDelLoc()
 {
   rad = 10;
   sRad = 1;
 
   delLoc = new PVector[50];
-  delLoc[0] = new PVector(grid*6.5, grid*4.2, 1);
+  delLoc[0] = new PVector(grid*6.5, grid*4.5, 1);
 
   //HOUSES:
   delLoc[1] = new PVector(513, 55, 3);
@@ -56,7 +81,7 @@ void setupDelLoc()
   delLoc[47] = new PVector(741, 208, 3);
   delLoc[48] = new PVector(764, 207, 3);
   delLoc[49] = new PVector(863, 206, 3);
-  
+
   delLoc[(int)random(delLoc.length)].z = 2;
 }
 void drawDelLoc()

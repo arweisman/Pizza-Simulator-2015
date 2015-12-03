@@ -15,6 +15,7 @@ class Building
   //rect but that doesn't really matter
   public boolean checkCollision(int x, int y, int rad)
   {
+    rect(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
     if ( x+rad > topLeft.x && x - rad < bottomRight.x && y+rad > topLeft.y && y-rad < bottomRight.y)
     {
       return true;

@@ -1,14 +1,16 @@
 class Car {
-
+  PImage car;
   float angle, vel;
   PVector loc;
   color c;
+  boolean isCrashed;
   public Car(PVector loc, float angle, color c)
   {
     this.loc = loc;
     this.angle = angle;
     this.c = c;
     vel = 0;
+    car = loadImage("car.png");
   }
 
   public void draw()
@@ -17,18 +19,25 @@ class Car {
     noStroke();
     pushMatrix();
     translate(loc.x, loc.y);
-    rotate(angle+PI/2);
+    rotate(angle-PI/2);
     rectMode(CORNERS);
-    rect(-6, -12, 6, 12);
+    //rect(-5, -10, 5, 10);
+    image(car, 0, -5);
     popMatrix();    
     loc.x += vel*cos(angle);
     loc.y += vel*sin(angle);
     vel *= .96;
   }
 
+  public void crash()
+  {
+    vel = 0;
+    isCrashed = true;
+  }
+
   public void turn(float angle)
   {
-    this.angle += angle*map(vel,0,1.5,0,1); //rotate proportional to speed
+    this.angle += angle;
   }
   public void accelerate(float speed)
   {
@@ -41,18 +50,20 @@ class Car {
 
   void updatemyCar()
   {
-    if (w)
-    {
-      myCar.accelerate(.1);
-    }
-    if (a) {
-      myCar.turn(-PI/64);
-    }
-    if (s) {
-      myCar.accelerate(-.05);
-    }
-    if (d) {
-      myCar.turn(PI/64);
+    if (!isCrashed) {
+      if (w)
+      {
+        myCar.accelerate(.1);
+      }
+      if (a) {
+        myCar.turn(-PI/64);
+      }
+      if (s) {
+        myCar.accelerate(-.05);
+      }
+      if (d) {
+        myCar.turn(PI/64);
+      }
     }
   }
 }
@@ -73,10 +84,6 @@ void keyPressed()
   if (key == 100) //'d'
   {
     d = true;
-  }
-  if (key == 32)
-  {
-    saveFrame("City.jpg");
   }
 }
 void keyReleased()

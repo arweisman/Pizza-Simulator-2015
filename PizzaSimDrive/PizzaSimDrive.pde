@@ -15,6 +15,7 @@ float rad, sRad;
 
 //key presses to store if key is held
 boolean w, a, s, d;
+
 void setup()
 {
   size(900, 585);
@@ -30,12 +31,10 @@ void setupDrive()
   city = loadImage("city.jpg");
   grid = 50;
 
-  //buildings
-  buildings = new Building[1];
-  buildings[0] = new Building(new PVector(450, 270), new PVector(720, 360));
   //car
-  myCar = new Car(new PVector(6.5*grid, 4.2*grid), 0, color(200, 0, 30));
+  myCar = new Car(new PVector(6.5*grid, 4.3*grid), PI, color(200, 0, 30));
   setupDelLoc();
+  setupBuildings();
   dispShop = false;
 }
 void drawDrive() {
@@ -45,7 +44,7 @@ void drawDrive() {
   drawDelLoc();
   checkLoc();
 }
-//Method to check if car is at delivery location
+//Method to check if car is at delivery location,off screen, or buildings
 void checkLoc()
 {
   PVector car = myCar.getLoc();
@@ -67,17 +66,26 @@ void checkLoc()
     }
   }
   //tell user to return to screen area
-  if(car.x > width || car.x < 0 || car.y > height || car.y < 0){
+  if (car.x > width || car.x < 0 || car.y > height || car.y < 0) {
     fill(50);
     rectMode(CORNERS);
-    rect(width/4,height/4,3*width/4,3*height/4);
+    rect(width/4, height/4, 3*width/4, 3*height/4);
     fill(255);
-    text("Return to delivery area!",width*.45,height/2);
+    text("Return to delivery area!", width*.45, height/2);
+  }
+  //check collisions
+  for (Building b : buildings)
+  {
+    if (b.checkCollision((int)car.x, (int)car.y, 5))
+    {
+      println("YOU CRASHED");
+      myCar.crash();
+    }
   }
 }
 
 
 void mousePressed()
 {
-  println("delLoc[1] = new PVector("+mouseX+","+mouseY+","+3+");");
+  println("new PVector("+mouseX+","+mouseY+");");
 }
