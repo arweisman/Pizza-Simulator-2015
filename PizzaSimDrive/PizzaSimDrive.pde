@@ -80,6 +80,11 @@ void checkLoc()
     {
       println("YOU CRASHED");
       myCar.crash();
+      fill(50);
+      rectMode(CORNERS);
+      rect(width/4, height/4, 3*width/4, 3*height/4);
+      fill(255);
+      text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
     }
   }
 }
