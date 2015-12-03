@@ -9,7 +9,7 @@ int sceneCount = 0;
 
 PImage titleImage, intro1Image, intro2Image, intro3Image, intro4Image;
 
-PVector head,
+PVector head, 
         lShoulder, rShoulder, lElbow, rElbow, lHand, rHand,
         lHip, rHip, lKnee, rKnee, lFoot, rFoot,
         tTorso, lTorso, rTorso;
@@ -21,9 +21,11 @@ boolean didRunIntro4Setup = false;
 boolean didRunDriveSetup = false;
 
         
-float waveR, headR;
+float waveR, headR, lUpperR, lLowerR, rUpperR, rLowerR;
 boolean waveLeft = false;
-boolean headLeft = false;  
+boolean headLeft = false; 
+
+float sittingOffset = 0;
 
 
 void mousePressed() {  // change the scene whenever the mouse is clicked
@@ -49,8 +51,6 @@ void mousePressed() {  // change the scene whenever the mouse is clicked
             break;    
     }
 }
-
-
 
 void drawChair() {
 }

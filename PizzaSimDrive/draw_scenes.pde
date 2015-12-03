@@ -44,7 +44,33 @@ void drawIntro2() {
     noStroke();
     rect(50, 50, 800, 500, 25);
     
+    if(sittingOffset <= 75) {
+        sittingOffset += 0.5;
+        lHip.y += 0.5;
+        rHip.y += 0.5;
+    }
     
+    if(lUpperR < PI/6) {
+        lUpperR += 0.0075;  
+    }
+    
+    if(lLowerR < 2.5) {
+        lLowerR += 0.040;  
+    }
+    
+    if(rUpperR < PI/6) {
+      rUpperR += 0.006;
+    }
+        
+    if (waveR > -1.5) {
+      waveR -= 0.01; 
+    } 
+ 
+    if(headR < PI) {
+        headR += 0.001;
+    } else {
+        headR -= 0.001;
+    }
     
     drawGuy();
 }
