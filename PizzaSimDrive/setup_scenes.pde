@@ -53,7 +53,7 @@ void setupIntro4() {
     }
 }
 
-void setupScene5() {
+void setupDriveScene() {
     if(!didRunDriveSetup) {
         setupDrive();
         didRunDriveSetup = true;

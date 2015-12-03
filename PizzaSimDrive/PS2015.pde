@@ -3,7 +3,8 @@ final int intro1 = 1;
 final int intro2 = 2;
 final int intro3 = 3;
 final int intro4 = 4;
-final int drive = 5;
+final int pizzaScene = 5;
+final int driveScene = 6;
 
 int sceneCount = 0;
 
@@ -19,6 +20,7 @@ boolean didRunIntro2Setup = false;
 boolean didRunIntro3Setup = false;  
 boolean didRunIntro4Setup = false;  
 boolean didRunDriveSetup = false;
+boolean didRunPizzaSetup = false;
 
         
 float waveR, headR, lUpperR, lLowerR, rUpperR, rLowerR;
@@ -48,7 +50,12 @@ void mousePressed() {  // change the scene whenever the mouse is clicked
             
         case intro4:
             sceneCount++;
-            break;    
+            break;  
+        case pizzaScene:
+            break;
+        case driveScene:
+            sceneCount = pizzaScene;
+            break;   
     }
 }
 
@@ -82,9 +89,13 @@ void draw() {
             drawIntro4();
             break;
             
-        case drive:
-            setupScene5();
+        case driveScene:
+            setupDriveScene();
             drawDrive();
+            break;
+        case pizzaScene:
+            setupPizCre();
+            drawPizzaCreation();
             break;
     }
 }
