@@ -41,13 +41,8 @@ void setupOrder()
 
   //start array values for which side each ingredient should be on
   for (int i = 0; i < totalIngredientTypes; i++) {
-    sideOfIngredient[i] = (int)random(0, 3);
+    sideOfIngredient[i] = (int)random(0, 4);
     ingAmount[i] = 0;
-
-    //------------------ FOR DUMMY RECEIPT ------------------
-    //sideOfIngredient[1] = 0;
-    //sideOfIngredient[0] = 1;
-    //-------------------------------------------------------
 
     for (int j = 0; j < 3; j++) {
       if (sideOfIngredient[i] == j) {
@@ -80,11 +75,11 @@ void drawPizzaCreation() {
   text("Left Side", width-190, 170);
   text("Right Side", width-190, 300);
 
-  /* On Screen Ingredient Counter
-   text("ingAmount[0]:" + ingAmount[0], width-190, 400); 
-   text("ingAmount[1]:" + ingAmount[1], width-190, 420);
-   text("ingAmount[2]:" + ingAmount[2], width-190, 440);
-   */
+  //On Screen Ingredient Counter
+  text("ingAmount[0]:" + ingAmount[0], width-190, 400); 
+  text("ingAmount[1]:" + ingAmount[1], width-190, 420);
+  text("ingAmount[2]:" + ingAmount[2], width-190, 440);
+
 
   //draw ingredients selection list
   fill(#EDB03E);
@@ -100,7 +95,7 @@ void drawPizzaCreation() {
   for (int i = 0; i < 3; i++)
   {
     int ingOnSide = 0;
-    for (int j = 0; j < 6; j++)
+    for (int j = 0; j < totalIngredientTypes; j++)
     {
       if (sideOfIngredient[j] == i)
       {
@@ -114,36 +109,31 @@ void drawPizzaCreation() {
     }
   }
 
-  //--------------DUMMY RECIEPT & DELIVER BUTTON----------------
-  //fill(#ED593E);
-  //if (ingAmount[1] >= targetAmount) {
-  //  fill(0, 200, 0);
-  //}
-  //text(ingName[1], width-190, 60);
+  //-------------- DELIVER BUTTON----------------
+  boolean done = true;
+  for (int i = 0; i < totalIngredientTypes; i++)
+  {
+    if (ingAmount[i] < targetAmount && sideOfIngredient[i] != 3)
+    {
+      done = false;
+    }
+  }
+  if (done) {
+    fill(0, 150, 0);
 
-  //fill(#ED593E);
-  //if (ingAmount[0] >= targetAmount) {
-  //  fill(0, 200, 0);
-  //}
-  //text(ingName[0], width-190, 190);
+    rect(width-160, height-70, 150, 60);
+    fill(255);
+    textSize(12);
+    text("Close Enough!", width-150, height-50);
+    textSize(30);
+    text("Deliver >", width-150, height-20);
 
-  //  if (ingAmount[0] >= targetAmount && ingAmount[1] >= targetAmount) {
-  //    fill(0, 150, 0);
-
-  //    rect(width-160, height-70, 150, 60);
-  //    fill(255);
-  //    textSize(12);
-  //    text("Close Enough!",width-150,height-50);
-  //    textSize(30);
-  //    text("Deliver >",width-150,height-20);
-
-  //    if(mousePressed){
-  //      if(mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10){
-  //        sceneCount = driveScene;
-  //      }
-  //    }
-  //  }
-  //--------------------------------------------------------
+    if (mousePressed) {
+      if (mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10) {
+        sceneCount = driveScene;
+      }
+    }
+  }
 
 
   //primary loop over number of ingredient types
