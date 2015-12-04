@@ -8,6 +8,12 @@ void drawIntro1() {
     noStroke();
     rect(50, 50, 800, 500, 25);
     
+    textAlign(RIGHT);
+    textSize(40);
+    fill(200);
+    text(intro1Text, 200, 100, 625, 525);
+    
+    
     if (waveR < -1.0) {
         waveLeft = true;
     } 
@@ -44,22 +50,27 @@ void drawIntro2() {
     noStroke();
     rect(50, 50, 800, 500, 25);
     
-    if(sittingOffset <= 75) {
-        sittingOffset += 0.5;
-        lHip.y += 0.5;
-        rHip.y += 0.5;
+    textAlign(RIGHT);
+    textSize(38);
+    fill(200);
+    text(intro2Text, 50, 75, 765, 475);
+    
+    if(sittingOffset <= 150) {
+        sittingOffset += 2;
+        lHip.y += 2;
+        rHip.y += 2;
     }
     
     if(lUpperR < PI/6) {
-        lUpperR += 0.0075;  
+        lUpperR += 0.007;  
     }
     
     if(lLowerR < 2.5) {
-        lLowerR += 0.040;  
+        lLowerR += 0.035;  
     }
     
     if(rUpperR < PI/6) {
-      rUpperR += 0.006;
+      rUpperR += 0.007;
     }
         
     if (waveR > -1.5) {
@@ -84,5 +95,15 @@ void drawIntro4() {
     noStroke();
     rect(50, 50, 800, 500, 25);
     
+    textAlign(RIGHT);
+    textSize(38);
+    fill(200);
+    text(intro4Text, 50, 75, 765, 475);
+    
     drawGuy();
+    
+    if(pizzaDrop < 450) {
+        pizzaDrop += 4;
+    } 
+    image(pizza, 130, -200 + pizzaDrop);
 }

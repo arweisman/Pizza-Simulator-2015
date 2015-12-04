@@ -27,7 +27,8 @@ void setupPizCre()
 
 void drawPizzaCreation() {
   background(#ED593E);
-
+  textAlign(LEFT);
+  
   //draw a pizza (circle)
   fill(#E0CA78);
   noStroke();

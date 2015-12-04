@@ -8,7 +8,7 @@ final int driveScene = 6;
 
 int sceneCount = 0;
 
-PImage titleImage, intro1Image, intro2Image, intro3Image, intro4Image;
+PImage titleImage, intro1Image, intro2Image, intro3Image, intro4Image, pizza;
 
 PVector head, 
         lShoulder, rShoulder, lElbow, rElbow, lHand, rHand,
@@ -22,8 +22,10 @@ boolean didRunIntro4Setup = false;
 boolean didRunDriveSetup = false;
 boolean didRunPizzaSetup = false;
 
+String intro1Text, intro2Text, intro4Text;
+
         
-float waveR, headR, lUpperR, lLowerR, rUpperR, rLowerR;
+float waveR, headR, lUpperR, lLowerR, rUpperR, rLowerR, pizzaDrop;
 boolean waveLeft = false;
 boolean headLeft = false; 
 
