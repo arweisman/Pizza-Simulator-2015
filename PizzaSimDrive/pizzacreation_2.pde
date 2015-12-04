@@ -75,12 +75,6 @@ void drawPizzaCreation() {
   text("Left Side", width-190, 170);
   text("Right Side", width-190, 300);
 
-  //On Screen Ingredient Counter
-  text("ingAmount[0]:" + ingAmount[0], width-190, 400); 
-  text("ingAmount[1]:" + ingAmount[1], width-190, 420);
-  text("ingAmount[2]:" + ingAmount[2], width-190, 440);
-
-
   //draw ingredients selection list
   fill(#EDB03E);
   olive(85, height*.125);
@@ -171,9 +165,9 @@ void drawPizzaCreation() {
     }
     if (p.z == 5) {
       onion(p.x, p.y);
-    } 
-    drawArm();
+    }
   }
+  drawArm();
 }
 
 void mouseClickedForPizza() {
@@ -200,7 +194,26 @@ void drawArm() {
   pushMatrix();
   translate(mouseX, mouseY);
   fill(0);
-  ellipse(0, 0, 10, 10);
+  switch(ingredientSelected){
+    case 0:
+      olive(0,0);
+      break;
+    case 1:
+      pepperoni(0,0);
+      break;
+    case 2:
+      greenpepper(0,0);
+      break;
+    case 3:
+      mushroom(0,0);
+      break;
+    case 4:
+      pineapple(0,0);
+      break;
+    case 5:
+      onion(-25,-25);
+      break;
+  }
   popMatrix();
 }
 //olives
