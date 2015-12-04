@@ -27,30 +27,35 @@ void setupPizCre()
     ingName[4] = "Pineapple";
     ingName[5] = "Onion";
 
-    for (int i = 0; i < 3; i++) {
-      ingPerSide[i] = 0;
-    }
-
-    //start array values for which side each ingredient should be on
-    for (int i = 0; i < totalIngredientTypes; i++) {
-      sideOfIngredient[i] = (int)random(0, 3);
-      ingAmount[i] = 0;
-
-      //------------------ FOR DUMMY RECEIPT ------------------
-      sideOfIngredient[1] = 0;
-      sideOfIngredient[0] = 1;
-      //-------------------------------------------------------
-
-      for (int j = 0; j < 3; j++) {
-        if (sideOfIngredient[i] == j) {
-          ingPerSide[j] += 1;
-        }
-      }
-
-      println(ingName[i] + " " + sideOfIngredient[i]);
-    }
-
     didRunPizzaSetup = true;
+    setupOrder();
+  }
+}
+void setupOrder()
+{
+  ingredientLoc.clear();
+
+  for (int i = 0; i < 3; i++) {
+    ingPerSide[i] = 0;
+  }
+
+  //start array values for which side each ingredient should be on
+  for (int i = 0; i < totalIngredientTypes; i++) {
+    sideOfIngredient[i] = (int)random(0, 3);
+    ingAmount[i] = 0;
+
+    //------------------ FOR DUMMY RECEIPT ------------------
+    //sideOfIngredient[1] = 0;
+    //sideOfIngredient[0] = 1;
+    //-------------------------------------------------------
+
+    for (int j = 0; j < 3; j++) {
+      if (sideOfIngredient[i] == j) {
+        ingPerSide[j] += 1;
+      }
+    }
+
+    println(ingName[i] + " " + sideOfIngredient[i]);
   }
 }
 
@@ -70,7 +75,7 @@ void drawPizzaCreation() {
   rect(width-200, 10, 190, height*.75);
 
   fill(0);
-  textSize(18);
+  textSize(24);
   text("Whole Pizza", width-190, 40);
   text("Left Side", width-190, 170);
   text("Right Side", width-190, 300);
@@ -90,45 +95,54 @@ void drawPizzaCreation() {
   pineapple(85, height*.725);
   onion(85, height*.9);
 
-  //write ingredient reciept
-  //for (int i = 0; i < 3; i++) { //for each side & ingredient
-  //  for (int j = 0; j < ingPerSide[i]; j++) { //and for the number of ingredients on each side
-  //    if (sideOfIngredient[i] == i) {
-  //      fill(0);
-  //      text(ingName[j] + i, width-190, 60 + i * 130 + j * 20);
-  //    }
-  //  }
-  //}
+  textSize(18);
 
-  //--------------DUMMY RECIEPT & DELIVER BUTTON----------------
-  fill(#ED593E);
-  if (ingAmount[1] >= targetAmount) {
-    fill(0, 200, 0);
-  }
-  text(ingName[1], width-190, 60);
-
-  fill(#ED593E);
-  if (ingAmount[0] >= targetAmount) {
-    fill(0, 200, 0);
-  }
-  text(ingName[0], width-190, 190);
-
-  if (ingAmount[0] >= targetAmount && ingAmount[1] >= targetAmount) {
-    fill(0, 150, 0);
-    
-    rect(width-160, height-70, 150, 60);
-    fill(255);
-    textSize(12);
-    text("Close Enough!",width-150,height-50);
-    textSize(30);
-    text("Deliver >",width-150,height-20);
-    
-    if(mousePressed){
-      if(mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10){
-        sceneCount = driveScene;
+  for (int i = 0; i < 3; i++)
+  {
+    int ingOnSide = 0;
+    for (int j = 0; j < 6; j++)
+    {
+      if (sideOfIngredient[j] == i)
+      {
+        ingOnSide++;
+        fill(#ED593E);
+        if (ingAmount[j] >= targetAmount) {
+          fill(0, 200, 0);
+        }
+        text(ingName[j], width-190, 40+(i*130+20*(ingOnSide)));
       }
     }
   }
+
+  //--------------DUMMY RECIEPT & DELIVER BUTTON----------------
+  //fill(#ED593E);
+  //if (ingAmount[1] >= targetAmount) {
+  //  fill(0, 200, 0);
+  //}
+  //text(ingName[1], width-190, 60);
+
+  //fill(#ED593E);
+  //if (ingAmount[0] >= targetAmount) {
+  //  fill(0, 200, 0);
+  //}
+  //text(ingName[0], width-190, 190);
+
+  //  if (ingAmount[0] >= targetAmount && ingAmount[1] >= targetAmount) {
+  //    fill(0, 150, 0);
+
+  //    rect(width-160, height-70, 150, 60);
+  //    fill(255);
+  //    textSize(12);
+  //    text("Close Enough!",width-150,height-50);
+  //    textSize(30);
+  //    text("Deliver >",width-150,height-20);
+
+  //    if(mousePressed){
+  //      if(mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10){
+  //        sceneCount = driveScene;
+  //      }
+  //    }
+  //  }
   //--------------------------------------------------------
 
 
@@ -170,9 +184,6 @@ void drawPizzaCreation() {
     } 
     drawArm();
   }
-  fill(255, 0, 0);
-  rectMode(CORNERS);
-  rect(800, 400, 900, 600);
 }
 
 void mouseClickedForPizza() {

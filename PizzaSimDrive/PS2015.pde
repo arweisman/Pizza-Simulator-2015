@@ -55,9 +55,6 @@ void mousePressed() {  // change the scene whenever the mouse is clicked
     break;  
   case pizzaScene:
     mouseClickedForPizza();
-    if (mouseX> 800 && mouseX < 900 && mouseY > 400 && mouseY < 600) {
-      sceneCount = driveScene;
-    }
     break;
   case driveScene:
     sceneCount = pizzaScene;
