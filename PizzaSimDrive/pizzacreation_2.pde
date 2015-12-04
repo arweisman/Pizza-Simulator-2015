@@ -28,7 +28,7 @@ void setupPizCre()
 void drawPizzaCreation() {
   background(#ED593E);
   textAlign(LEFT);
-  
+
   //draw a pizza (circle)
   fill(#E0CA78);
   noStroke();
@@ -120,6 +120,9 @@ void drawPizzaCreation() {
     } 
     drawArm();
   }
+  fill(255, 0, 0);
+  rectMode(CORNERS);
+  rect(800, 400, 900, 600);
 }
 
 void mouseClickedForPizza() {

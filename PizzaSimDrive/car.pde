@@ -22,6 +22,7 @@ class Car {
     rotate(angle-PI/2);
     rectMode(CORNERS);
     //rect(-5, -10, 5, 10);
+    scale(1.5);
     image(car, 0, -5);
     popMatrix();    
     loc.x += vel*cos(angle);
