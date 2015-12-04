@@ -1,26 +1,55 @@
 
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
-int targetIngredientNum = 10;
+int targetAmount = 10;
 
 
-int ingredientSide[]; //target side for ingredients of each type (x[0] = 0 means ing 1 is on the whole pizza)
-int ingAmount[]; //number of ingredients placed on the pizza for each type
+int sideOfIngredient[]; //target side for ingredients of each type ("sideOfIngredient[0] = 0" means ingredient 0 is on the whole pizza, 1 left, etc)
+int ingPerSide[]; //number of ingredients on each side of pizza ("ingPerSide[0] = 3" means there are 3 ingredient types on side 0)
+int ingAmount[]; //counter for number of ingredients placed on the pizza for each type
+String ingName[];
 ArrayList<PVector> ingredientLoc; //x & y = ingredient location, z = ingredient type
 
 void setupPizCre()
 {
   if (!didRunPizzaSetup) {
     ingredientSelected = 0;
-    ingredientSide = new int[totalIngredientTypes];
+    sideOfIngredient = new int[totalIngredientTypes];
+    ingPerSide = new int[3];
     ingAmount = new int[totalIngredientTypes];
+    ingName = new String[totalIngredientTypes];
     ingredientLoc = new ArrayList<PVector>();
+
+    ingName[0] = "Olive";
+    ingName[1] = "Pepperoni";
+    ingName[2] = "Green Pepper";
+    ingName[3] = "Mushroom";
+    ingName[4] = "Pineapple";
+    ingName[5] = "Onion";
+
+    for (int i = 0; i < 3; i++) {
+      ingPerSide[i] = 0;
+    }
 
     //start array values for which side each ingredient should be on
     for (int i = 0; i < totalIngredientTypes; i++) {
-      ingredientSide[i] = (int)random(0, 3);
+      sideOfIngredient[i] = (int)random(0, 3);
       ingAmount[i] = 0;
+
+      //------------------ FOR DUMMY RECEIPT ------------------
+      sideOfIngredient[1] = 0;
+      sideOfIngredient[0] = 1;
+      //-------------------------------------------------------
+
+      for (int j = 0; j < 3; j++) {
+        if (sideOfIngredient[i] == j) {
+          ingPerSide[j] += 1;
+        }
+      }
+
+      println(ingName[i] + " " + sideOfIngredient[i]);
     }
+
     didRunPizzaSetup = true;
   }
 }
@@ -37,6 +66,7 @@ void drawPizzaCreation() {
   //draw interface
   fill(#EDB03E);
   rect(10, 10, 150, height-20);
+  fill(255);
   rect(width-200, 10, 190, height*.75);
 
   fill(0);
@@ -44,24 +74,63 @@ void drawPizzaCreation() {
   text("Whole Pizza", width-190, 40);
   text("Left Side", width-190, 170);
   text("Right Side", width-190, 300);
-  text("ingAmount[0]:" + ingAmount[0], width-190, 400); //--------ingredient counter, remove--------
-  text("ingAmount[1]:" + ingAmount[1], width-190, 420); //
-  text("ingAmount[2]:" + ingAmount[2], width-190, 440); //
 
-  //draw ingredients selection list (placeholder)
+  /* On Screen Ingredient Counter
+   text("ingAmount[0]:" + ingAmount[0], width-190, 400); 
+   text("ingAmount[1]:" + ingAmount[1], width-190, 420);
+   text("ingAmount[2]:" + ingAmount[2], width-190, 440);
+   */
+
+  //draw ingredients selection list
   fill(#EDB03E);
-  //rect(20, 20, 130, 40);
   olive(85, height*.125);
-  //rect(20, 70, 130, 40);
   pepperoni(85, height*.275);
-  //rect(20, 120, 130, 40);
   greenpepper(85, height*.42);
-  //rect(20, 170, 130, 40);
   mushroom(85, height*.575);
-  //rect(20, 220, 130, 40);
   pineapple(85, height*.725);
-  //rect(20, 270, 130, 40);
   onion(85, height*.9);
+
+  //write ingredient reciept
+  //for (int i = 0; i < 3; i++) { //for each side & ingredient
+  //  for (int j = 0; j < ingPerSide[i]; j++) { //and for the number of ingredients on each side
+  //    if (sideOfIngredient[i] == i) {
+  //      fill(0);
+  //      text(ingName[j] + i, width-190, 60 + i * 130 + j * 20);
+  //    }
+  //  }
+  //}
+
+  //--------------DUMMY RECIEPT & DELIVER BUTTON----------------
+  fill(#ED593E);
+  if (ingAmount[1] >= targetAmount) {
+    fill(0, 200, 0);
+  }
+  text(ingName[1], width-190, 60);
+
+  fill(#ED593E);
+  if (ingAmount[0] >= targetAmount) {
+    fill(0, 200, 0);
+  }
+  text(ingName[0], width-190, 190);
+
+  if (ingAmount[0] >= targetAmount && ingAmount[1] >= targetAmount) {
+    fill(0, 150, 0);
+    
+    rect(width-160, height-70, 150, 60);
+    fill(255);
+    textSize(12);
+    text("Close Enough!",width-150,height-50);
+    textSize(30);
+    text("Deliver >",width-150,height-20);
+    
+    if(mousePressed){
+      if(mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10){
+        sceneCount = driveScene;
+      }
+    }
+  }
+  //--------------------------------------------------------
+
 
   //primary loop over number of ingredient types
   for (int i = 0; i < totalIngredientTypes; i++) {
@@ -70,31 +139,12 @@ void drawPizzaCreation() {
     if (mousePressed && mouseX > 20 && mouseX < 150 && mouseY > (height*.05) + i * (height*.15) && mouseY < (height*.05) + (i+1) * (height*.15)) {
       ingredientSelected = i;
     }
-
     if (ingredientSelected == i) {
       noFill();
       stroke(255, 0, 0);
       strokeWeight(3);
       rect(20, (height*.05) + i * (height*.15), 130, (height*.9)/6);
       noStroke();
-    }
-
-    if (ingAmount[0] < targetIngredientNum) {
-      fill(0);
-    } else {
-      fill(255);
-      rect(width-160, height-100, 150, 50);
-      fill(0, 255, 0);
-    }
-    textSize(12);
-    if (ingredientSide[i] == 0) {
-      text("Ingredient" + (i+1), width-190, 60 + i * 20);
-    } 
-    if (ingredientSide[i] == 1) {
-      text("Ingredient" + (i+1), width-190, 190 + i * 20);
-    }    
-    if (ingredientSide[i] == 2) {
-      text("Ingredient" + (i+1), width-190, 320 + i * 20);
     }
   }
 
@@ -132,13 +182,13 @@ void mouseClickedForPizza() {
       if (ingredientSelected == i) {
         ingredientLoc.add(new PVector(mouseX, mouseY, i));
       }
-      if (ingredientSelected == i && ingredientSide[i] == 0) {
+      if (ingredientSelected == i && sideOfIngredient[i] == 0) {
         ingAmount[i]++;
       }
-      if (ingredientSelected == i && ingredientSide[i] == 1 && mouseX < width/2) {
+      if (ingredientSelected == i && sideOfIngredient[i] == 1 && mouseX < width/2) {
         ingAmount[i]++;
       }
-      if (ingredientSelected == i && ingredientSide[i] == 2 && mouseX > width/2) {
+      if (ingredientSelected == i && sideOfIngredient[i] == 2 && mouseX > width/2) {
         ingAmount[i]++;
       }
     }
