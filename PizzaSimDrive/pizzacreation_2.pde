@@ -34,8 +34,8 @@ void drawPizzaCreation() {
   ellipse(width/2, height/2, height*0.8, height*0.8);
 
   //draw interface
-  fill(255);
-  rect(10, 10, 150, height/2);
+  fill(#EDB03E);
+  rect(10, 10, 150, height-20);
   rect(width-200, 10, 190, height*.75);
 
   fill(0);
@@ -48,16 +48,25 @@ void drawPizzaCreation() {
   text("ingAmount[2]:" + ingAmount[2], width-190, 440); //
 
   //draw ingredients selection list (placeholder)
-  fill(200);
-  rect(20, 20, 130, 40);
-  rect(20, 70, 130, 40);
-  rect(20, 120, 130, 40);
+  fill(#EDB03E);
+  //rect(20, 20, 130, 40);
+  olive(85, height*.125);
+  //rect(20, 70, 130, 40);
+  pepperoni(85, height*.275);
+  //rect(20, 120, 130, 40);
+  greenpepper(85, height*.42);
+  //rect(20, 170, 130, 40);
+  mushroom(85, height*.575);
+  //rect(20, 220, 130, 40);
+  pineapple(85, height*.725);
+  //rect(20, 270, 130, 40);
+  onion(85, height*.9);
 
   //primary loop over number of ingredient types
   for (int i = 0; i < totalIngredientTypes; i++) {
 
     //determine which ingredient is clicked and draw outline of selected ingredient
-    if (mousePressed && mouseX > 20 && mouseX < 150 && mouseY > 20 + i * 50 && mouseY < 60 + i * 50) {
+    if (mousePressed && mouseX > 20 && mouseX < 150 && mouseY > (height*.05) + i * (height*.15) && mouseY < (height*.05) + (i+1) * (height*.15)) {
       ingredientSelected = i;
     }
 
@@ -65,7 +74,7 @@ void drawPizzaCreation() {
       noFill();
       stroke(255, 0, 0);
       strokeWeight(3);
-      rect(20, 20 + i * 50, 130, 40);
+      rect(20, (height*.05) + i * (height*.15), 130, (height*.9)/6);
       noStroke();
     }
 
@@ -154,6 +163,7 @@ void pepperoni(float pepx, float pepy) {
 }
 //green peppers
 void greenpepper(float greenx, float greeny) {
+  strokeCap(ROUND);
   noFill();
   pushMatrix();
   translate(greenx, greeny);

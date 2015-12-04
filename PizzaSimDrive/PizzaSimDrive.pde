@@ -16,6 +16,8 @@ float rad, sRad;
 //key presses to store if key is held
 boolean w, a, s, d;
 
+float money;
+
 void setup() { //setup for titleScreen
     size(900, 600);
     background(255);
