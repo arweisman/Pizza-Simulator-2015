@@ -1,7 +1,7 @@
 
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
-int targetAmount = 10;
+int targetAmount = 0;
 
 
 int sideOfIngredient[]; //target side for ingredients of each type ("sideOfIngredient[0] = 0" means ingredient 0 is on the whole pizza, 1 left, etc)
@@ -194,25 +194,25 @@ void drawArm() {
   pushMatrix();
   translate(mouseX, mouseY);
   fill(0);
-  switch(ingredientSelected){
-    case 0:
-      olive(0,0);
-      break;
-    case 1:
-      pepperoni(0,0);
-      break;
-    case 2:
-      greenpepper(0,0);
-      break;
-    case 3:
-      mushroom(0,0);
-      break;
-    case 4:
-      pineapple(0,0);
-      break;
-    case 5:
-      onion(-25,-25);
-      break;
+  switch(ingredientSelected) {
+  case 0:
+    olive(0, 0);
+    break;
+  case 1:
+    pepperoni(0, 0);
+    break;
+  case 2:
+    greenpepper(0, 0);
+    break;
+  case 3:
+    mushroom(0, 0);
+    break;
+  case 4:
+    pineapple(0, 0);
+    break;
+  case 5:
+    onion(-25, -25);
+    break;
   }
   popMatrix();
 }

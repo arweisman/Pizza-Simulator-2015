@@ -2,11 +2,11 @@ PImage city;
 
 int grid; //num to simplify translations between graph paper and screen
 //building array
-Building[] buildings;
+ArrayList<PShape> buildings;
 //car
 Car myCar;
 //delivery locations array  X,Y,z: 1 = store, 2 = current delivery location, 3 = other
-PVector[] delLoc;
+ArrayList<PVector> delLoc;
 //boolean to store if the shop should be displayed(depending
 //on if driver still must return
 boolean dispShop;
@@ -19,30 +19,31 @@ boolean w, a, s, d;
 float money;
 
 void setup() { //setup for titleScreen
-    size(900, 600);
-    background(255);
-       
-    titleImage = loadImage("titleScreen.png");
-    image(titleImage, 0, 0);
+  size(900, 600);
+  background(255);
+
+  titleImage = loadImage("titleScreen.png");
+  image(titleImage, 0, 0);
 }
 
 void setupDrive()
 {
-  city = loadImage("city.jpg");
+  city = loadImage("newCity.png");
+  city.resize(width,height);
   grid = 50;
 
   //car
   myCar = new Car(new PVector(6.5*grid, 4.3*grid), PI, color(200, 0, 30));
-  setupDelLoc();
-  setupBuildings();
+  //setupDelLoc();
+  //setupBuildings();
   dispShop = false;
 }
 void drawDrive() {
   image(city, 0, 0);
   myCar.draw();
   myCar.updatemyCar();
-  drawDelLoc();
-  checkLoc();
+  //drawDelLoc();
+  //checkLoc();
 }
 //Method to check if car is at delivery location,off screen, or buildings
 void checkLoc()
@@ -59,10 +60,10 @@ void checkLoc()
       dispShop = true;
     }
     //check if car at shop
-    if (dist(car.x, car.y, delLoc[0].x, delLoc[0].y) < 20 && dispShop)
+    if (dist(car.x, car.y, delLoc.get(0).x, delLoc.get(0).y) < 20 && dispShop)
     {
       dispShop = false;
-      delLoc[(int)random(delLoc.length)].z = 2;
+      //delLoc.get((int)random(delLoc.size())).z = 2;
     }
   }
   //tell user to return to screen area
@@ -74,17 +75,17 @@ void checkLoc()
     text("Return to delivery area!", width*.45, height/2);
   }
   //check collisions
-  for (Building b : buildings)
+  for (PShape b : buildings)
   {
-    if (b.checkCollision((int)car.x, (int)car.y, 5))
-    {
-      println("YOU CRASHED");
-      myCar.crash();
-      fill(50);
-      rectMode(CORNERS);
-      rect(width/4, height/4, 3*width/4, 3*height/4);
-      fill(255);
-      text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
-    }
+   if (checkShape(car.x,car.y,b))
+   {
+     println("YOU CRASHED");
+     myCar.crash();
+     fill(50);
+     rectMode(CORNERS);
+     rect(width/4, height/4, 3*width/4, 3*height/4);
+     fill(255);
+     text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
+   }
   }
 }
