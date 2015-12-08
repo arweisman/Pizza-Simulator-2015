@@ -88,7 +88,7 @@ void checkLoc()
     }
   }
   //tell user to return to screen area
-  if (car.x > width || car.x < 0 || car.y > height || car.y < 0) {
+  if (car.x > 1600 || car.x < 0 || car.y > 1066 || car.y < 0) {
     fill(50);
     rectMode(CORNERS);
     rect(width/4, height/4, 3*width/4, 3*height/4);
