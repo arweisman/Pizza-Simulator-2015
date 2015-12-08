@@ -19,6 +19,15 @@ class Car {
     noStroke();
     pushMatrix();
     translate(loc.x, loc.y);
+    //ADJUST ACCORDING TO 'TILE' CAR IS IN ******************
+    if (loc.x >= 800)
+    {
+      translate(-700, 0);
+    }
+    if (loc.y>= 533)
+    {
+      translate(0, -436);
+    }
     rotate(angle-PI/2);
     rectMode(CORNERS);
     //rect(-5, -10, 5, 10);

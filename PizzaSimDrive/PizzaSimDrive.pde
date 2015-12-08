@@ -1,4 +1,5 @@
-PImage city;
+//PImage city;
+PImage city[];
 
 int grid; //num to simplify translations between graph paper and screen
 //building array
@@ -28,8 +29,13 @@ void setup() { //setup for titleScreen
 
 void setupDrive()
 {
-  city = loadImage("newCity.png");
-  city.resize(width,height);
+  //city = loadImage("StitchedCity.png");
+  //city.resize(width,height);
+  city = new PImage[4];
+  city[0] = loadImage("topLeft.jpg");
+  city[1] = loadImage("topRight.jpg");
+  city[2] = loadImage("bottomLeft.jpg");
+  city[3] = loadImage("bottomRight.jpg");
   grid = 50;
 
   //car
@@ -39,7 +45,22 @@ void setupDrive()
   dispShop = false;
 }
 void drawDrive() {
-  image(city, 0, 0);
+  //image(city, 0, 0);
+  PVector c = myCar.getLoc();
+  if(c.x <= 800  && c.y <= 533)
+  {
+    image(city[0],0,0);
+  }else if(c.x >= 800 && c.y <= 533)
+  {
+   image(city[1],0,0); 
+  }else if(c.x < 800 && c.y > 533)
+  {
+    image(city[2],0,0);
+  }else
+  {
+    image(city[3],0,0);
+  }
+  
   myCar.draw();
   myCar.updatemyCar();
   //drawDelLoc();
