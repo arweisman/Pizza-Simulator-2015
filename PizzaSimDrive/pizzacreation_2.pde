@@ -1,4 +1,4 @@
-PImage pizzaImg;
+PImage pizzaImg, deliverImg;
 
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
@@ -22,6 +22,7 @@ void setupPizCre()
     ingredientLoc = new ArrayList<PVector>();
 
     pizzaImg = loadImage("pizza_tray-receipt.png");
+    deliverImg = loadImage("deliver.png");
 
     ingName[0] = "Olive";
     ingName[1] = "Pepperoni";
@@ -67,7 +68,7 @@ void drawPizzaCreation() {
   noStroke();
   //ellipse(width/2, height/2, height*0.8, height*0.8);
 
-  //draw interface
+  //--------------DRAW INTERFACE----------------
   //fill(#EDB03E);
   //rect(10, 10, 150, height-20);
   //fill(255);
@@ -107,9 +108,9 @@ void drawPizzaCreation() {
   mushroom(85, height*.575);
   pineapple(85, height*.725);
   onion(85, height*.9);
-
+  
+  //--------------DRAW RECIEPT INGREDIENTS----------------
   textSize(18);
-
   for (int i = 0; i < 3; i++)
   {
     int ingOnSide = 0;
@@ -127,7 +128,7 @@ void drawPizzaCreation() {
     }
   }
 
-  //-------------- DELIVER BUTTON----------------
+  //--------------DELIVER BUTTON----------------
   boolean done = true;
   for (int i = 0; i < totalIngredientTypes; i++)
   {
@@ -137,14 +138,16 @@ void drawPizzaCreation() {
     }
   }
   if (done) {
-    fill(0, 150, 0);
-
-    rect(width-160, height-70, 150, 60);
-    fill(255);
-    textSize(12);
-    text("Close Enough!", width-150, height-50);
-    textSize(30);
-    text("Deliver >", width-150, height-20);
+    
+    //fill(0, 150, 0);    
+    //rect(width-160, height-70, 150, 60);
+    //fill(255);
+    //textSize(12);
+    //text("Close Enough!", width-150, height-50);
+    //textSize(30);
+    //text("Deliver >", width-150, height-20);
+    
+    image(deliverImg, width-190, height-100);    
 
     if (mousePressed) {
       if (mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10) {
@@ -154,7 +157,7 @@ void drawPizzaCreation() {
   }
 
 
-  //primary loop over number of ingredient types
+  //--------------INGREDIENT LOOP----------------
   for (int i = 0; i < totalIngredientTypes; i++) {
 
     //determine which ingredient is clicked and draw outline of selected ingredient
@@ -218,6 +221,7 @@ void drawArm() {
   pushMatrix();
   translate(mouseX, mouseY);
   fill(0);
+  //draw the selected ingredient at pointer
   switch(ingredientSelected) {
   case 0:
     olive(0, 0);
