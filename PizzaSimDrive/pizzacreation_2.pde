@@ -73,7 +73,7 @@ void drawPizzaCreation() {
   //rect(10, 10, 150, height-20);
   //fill(255);
   //rect(width-200, 10, 190, height*.75);
-  
+
   //beginShape();
   //vertex(width-10, height*.75+10);
   //for (int i = 0; i < 39; i++) {
@@ -108,7 +108,7 @@ void drawPizzaCreation() {
   mushroom(85, height*.575);
   pineapple(85, height*.725);
   onion(85, height*.9);
-  
+
   //--------------DRAW RECIEPT INGREDIENTS----------------
   textSize(18);
   for (int i = 0; i < 3; i++)
@@ -138,7 +138,7 @@ void drawPizzaCreation() {
     }
   }
   if (done) {
-    
+
     //fill(0, 150, 0);    
     //rect(width-160, height-70, 150, 60);
     //fill(255);
@@ -146,7 +146,7 @@ void drawPizzaCreation() {
     //text("Close Enough!", width-150, height-50);
     //textSize(30);
     //text("Deliver >", width-150, height-20);
-    
+
     image(deliverImg, width-190, height-100);    
 
     if (mousePressed) {
@@ -218,31 +218,34 @@ void mouseClickedForPizza() {
 }
 
 void drawArm() {
-  pushMatrix();
-  translate(mouseX, mouseY);
-  fill(0);
-  //draw the selected ingredient at pointer
-  switch(ingredientSelected) {
-  case 0:
-    olive(0, 0);
-    break;
-  case 1:
-    pepperoni(0, 0);
-    break;
-  case 2:
-    greenpepper(0, 0);
-    break;
-  case 3:
-    mushroom(0, 0);
-    break;
-  case 4:
-    pineapple(0, 0);
-    break;
-  case 5:
-    onion(-25, -25);
-    break;
+  if (dist(mouseX, mouseY, width/2, height/2)<205 || mouseX < width/2)
+  {
+    pushMatrix();
+    translate(mouseX, mouseY);
+    fill(0);
+    //draw the selected ingredient at pointer
+    switch(ingredientSelected) {
+    case 0:
+      olive(0, 0);
+      break;
+    case 1:
+      pepperoni(0, 0);
+      break;
+    case 2:
+      greenpepper(0, 0);
+      break;
+    case 3:
+      mushroom(0, 0);
+      break;
+    case 4:
+      pineapple(0, 0);
+      break;
+    case 5:
+      onion(-25, -25);
+      break;
+    }
+    popMatrix();
   }
-  popMatrix();
 }
 //olives
 void olive(float olivex, float olivey) {

@@ -10,7 +10,7 @@ class Car {
     this.angle = angle;
     this.c = c;
     vel = 0;
-    car = loadImage("car1.png");
+    car = loadImage("car.png");
   }
 
   public void draw()
