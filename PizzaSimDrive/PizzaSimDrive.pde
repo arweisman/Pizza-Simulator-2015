@@ -1,5 +1,6 @@
 //PImage city;
 PImage city[];
+PImage tree[];
 
 int grid; //num to simplify translations between graph paper and screen
 //building array
@@ -36,6 +37,11 @@ void setupDrive()
   city[1] = loadImage("topRight.jpg");
   city[2] = loadImage("bottomLeft.jpg");
   city[3] = loadImage("bottomRight.jpg");
+  tree = new PImage[4];
+  tree[0] = loadImage("treeTopLeft.png");
+  tree[1] = loadImage("treeTopRight.png");
+  tree[2] = loadImage("treeBottomLeft.png");
+  tree[3] = loadImage("treeBottomRight.png");
   grid = 50;
 
   //car
@@ -47,21 +53,35 @@ void setupDrive()
 void drawDrive() {
   //image(city, 0, 0);
   PVector c = myCar.getLoc();
-  if(c.x <= 800  && c.y <= 533)
+  if (c.x <= 800  && c.y <= 533)
   {
-    image(city[0],0,0);
-  }else if(c.x >= 800 && c.y <= 533)
+    image(city[0], 0, 0);
+  } else if (c.x >= 800 && c.y <= 533)
   {
-   image(city[1],0,0); 
-  }else if(c.x < 800 && c.y > 533)
+    image(city[1], 0, 0);
+  } else if (c.x < 800 && c.y > 533)
   {
-    image(city[2],0,0);
-  }else
+    image(city[2], 0, 0);
+  } else
   {
-    image(city[3],0,0);
+    image(city[3], 0, 0);
   }
-  
   myCar.draw();
+  if (c.x <= 800  && c.y <= 533)
+  {
+    image(tree[0], 0, 0);
+  } else if (c.x >= 800 && c.y <= 533)
+  {
+    image(tree[1], 0, 0);
+  } else if (c.x < 800 && c.y > 533)
+  {
+    image(tree[2], 0, 0);
+  } else
+  {
+    image(tree[3], 0, 0);
+  }
+
+
   myCar.updatemyCar();
   //drawDelLoc();
   //checkLoc();
@@ -98,15 +118,15 @@ void checkLoc()
   //check collisions
   for (PShape b : buildings)
   {
-   if (checkShape(car.x,car.y,b))
-   {
-     println("YOU CRASHED");
-     myCar.crash();
-     fill(50);
-     rectMode(CORNERS);
-     rect(width/4, height/4, 3*width/4, 3*height/4);
-     fill(255);
-     text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
-   }
+    if (checkShape(car.x, car.y, b))
+    {
+      println("YOU CRASHED");
+      myCar.crash();
+      fill(50);
+      rectMode(CORNERS);
+      rect(width/4, height/4, 3*width/4, 3*height/4);
+      fill(255);
+      text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
+    }
   }
 }
