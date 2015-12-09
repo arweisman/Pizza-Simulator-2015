@@ -8,7 +8,7 @@ final int driveScene = 6;
 
 int sceneCount = 0;
 
-PImage titleImage, intro1Image, intro2Image, intro3Image, intro4Image, pizza;
+PImage titleImage, intro1Image, intro2Image, intro3Image, intro4Image, pizza, chair, desk, cap;
 
 PVector head, 
   lShoulder, rShoulder, lElbow, rElbow, lHand, rHand, 
@@ -25,9 +25,10 @@ boolean didRunPizzaSetup = false;
 String intro1Text, intro2Text, intro4Text;
 
 
-float waveR, headR, lUpperR, lLowerR, rUpperR, rLowerR, pizzaDrop;
+float waveR, headR, lUpperR, lLowerR, rUpperR, rLowerR, headShakeR, pizzaDrop;
 boolean waveLeft = false;
-boolean headLeft = false; 
+boolean headLeft = false;
+boolean headShakeLeft = false;
 
 float sittingOffset = 0;
 
@@ -53,15 +54,15 @@ void mousePressed() {  // change the scene whenever the mouse is clicked
   case intro4:
     sceneCount++;
     break;  
+    
   case pizzaScene:
     mouseClickedForPizza();
     break;
+    
   case driveScene:
     break;
+    
   }
-}
-
-void drawChair() {
 }
 
 void draw() {

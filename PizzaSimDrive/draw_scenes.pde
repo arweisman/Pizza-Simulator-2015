@@ -74,16 +74,33 @@ void drawIntro2() {
   }
 
   if (waveR > -1.5) {
-    waveR -= 0.01;
+    waveR -= 0.02;
   } 
-
-  if (headR < PI) {
-    headR += 0.001;
+  
+  if(headR < PI) {
+      headR += 0.01;
   } else {
-    headR -= 0.001;
+      headR -= 0.01;
   }
-
+  
+  if (headShakeR < -PI/16) {
+    headShakeLeft = true;
+  } 
+  if (headShakeR > PI/16) {
+    headShakeLeft = false;
+  }
+  if(sittingOffset >= 150) {
+      if (headShakeLeft) {
+        headShakeR += 0.01;
+      } else {
+        headShakeR -= 0.01;
+      }
+  }
+  
+  
+  image(chair, -200 + sittingOffset*1.65, 420);
   drawGuy();
+  image(desk, -210 + sittingOffset*1.65, 425);
 }
 
 void drawIntro3() {
@@ -102,8 +119,9 @@ void drawIntro4() {
 
   drawGuy();
 
-  if (pizzaDrop < 450) {
-    pizzaDrop += 4;
+  if (pizzaDrop < 440) {
+    pizzaDrop += 6;
   } 
   image(pizza, 130, -200 + pizzaDrop);
+  image(cap, 80, -100 + pizzaDrop/2.75);
 }

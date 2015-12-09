@@ -1,7 +1,7 @@
 void setupIntro1() {
     if(!didRunIntro1Setup) {
         intro1Image = loadImage("calpolybgblur.png");
-        head = new PVector(150, 150);
+        head = new PVector(150, 153);
     
         lShoulder = new PVector(143, 222);
         rShoulder = new PVector(155, 222);
@@ -33,10 +33,14 @@ void setupIntro1() {
 void setupIntro2() {
     if(!didRunIntro2Setup) {
         intro2Image = loadImage("classroombgblur.png");  
+        chair = loadImage("chairsmall.png");
+        desk = loadImage("desk.png");
         lUpperR = 0;
         lLowerR = 0;
         rUpperR = 0;
         rLowerR = 0;
+        
+        headShakeR = 0;
         
         intro2Text = "Oh no! Billy has no idea what he's\ndoing! His extremely supportive\nparents have told him that if he\ndoesn't get his act together,\nthey will stop paying for his\neducation! What will he do?";
 
@@ -55,6 +59,7 @@ void setupIntro3() {
 void setupIntro4() {
     if(!didRunIntro4Setup) {
         intro4Image = loadImage("woodstocksbgblur.png");
+        cap = loadImage("baseballCap.png");
         image(intro4Image, 0, 0);
         
         pizza = loadImage("pizzabox.png");
@@ -66,7 +71,7 @@ void setupIntro4() {
         rUpperR = 0;
         rLowerR = 0;
         
-        head = new PVector(150, 150);
+        head = new PVector(150, 155);
     
         lShoulder = new PVector(143, 222);
         rShoulder = new PVector(155, 222);
@@ -87,6 +92,7 @@ void setupIntro4() {
         rTorso = new PVector(155, 375);
  
         headR = PI;
+        headShakeR = -PI/20;
         waveR = 0;
         
         intro4Text = "Meet Woodstock's Pizza's newest employee! Billy got a job at the\nbest pizza joint in SLO\nto pay his way through college.\nBilly works in the kitchen\nand is also a delivery boy.";
