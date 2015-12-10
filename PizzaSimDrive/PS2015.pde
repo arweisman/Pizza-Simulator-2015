@@ -1,3 +1,5 @@
+//Stelios Bonadurer, Chris Chappell, Polina Orekhova, Andrew Weisman
+
 final int titleScreen = 0;
 final int intro1 = 1;
 final int intro2 = 2;
