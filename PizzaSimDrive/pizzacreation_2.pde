@@ -278,13 +278,13 @@ void mushroom(float mushx, float mushy) {
   rotate(mushx-mushy);
   translate(-mushx, -mushy);
   noStroke();
-  fill(255, 242, 165);
+  fill(#caa469);
   ellipse(mushx, mushy, 60, 30);
   fill(75, 61, 36);
   ellipse(mushx, mushy+7.5, 40, 15);
   strokeCap(ROUND);
   strokeWeight(15);
-  stroke(255, 242, 165);
+  stroke(#caa469);
   line(mushx, mushy, mushx, mushy+20);
   popMatrix();
 }
@@ -295,7 +295,7 @@ void pineapple(float pinex, float piney) {
   translate(pinex, piney);
   rotate((pinex+piney)*3);
   translate(-pinex, -piney);
-  fill(255, 255, 0);
+  fill(#fff460);
   quad(pinex-25, piney-25, pinex+20, piney-15, pinex+3, piney+20, pinex-20, piney+15);
   popMatrix();
 }
