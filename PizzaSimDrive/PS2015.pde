@@ -60,17 +60,16 @@ void mousePressed() {  // change the scene whenever the mouse is clicked
   case intro4:
     sceneCount++;
     break;
-    
+
   case intro5:
     sceneCount++;
     break;
-    
+
   case pizzaScene:
     mouseClickedForPizza();
     break;
-    
+
   case driveScene:
     break;
-    
   }
 }
