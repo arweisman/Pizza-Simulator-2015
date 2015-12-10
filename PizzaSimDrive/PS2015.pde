@@ -22,6 +22,8 @@ boolean didRunIntro4Setup = false;
 boolean didRunDriveSetup = false;
 boolean didRunPizzaSetup = false;
 
+
+PFont font1;
 String intro1Text, intro2Text, intro4Text;
 
 

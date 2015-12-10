@@ -9,9 +9,9 @@ void drawIntro1() {
   rect(50, 50, 800, 500, 25);
 
   textAlign(RIGHT);
-  textSize(40);
+  textSize(46);
   fill(200);
-  text(intro1Text, 200, 100, 625, 525);
+  text(intro1Text, 200, 75, 625, 525);
 
 
   if (waveR < -1.0) {
@@ -51,7 +51,7 @@ void drawIntro2() {
   rect(50, 50, 800, 500, 25);
 
   textAlign(RIGHT);
-  textSize(38);
+  textSize(46);
   fill(200);
   text(intro2Text, 50, 75, 765, 475);
 
@@ -113,7 +113,7 @@ void drawIntro4() {
   rect(50, 50, 800, 500, 25);
 
   textAlign(RIGHT);
-  textSize(38);
+  textSize(46);
   fill(200);
   text(intro4Text, 50, 75, 765, 475);
 
@@ -122,6 +122,6 @@ void drawIntro4() {
   if (pizzaDrop < 440) {
     pizzaDrop += 6;
   } 
-  image(pizza, 130, -200 + pizzaDrop);
-  image(cap, 80, -100 + pizzaDrop/2.75);
+  image(pizza, 130 - 30, -180 + pizzaDrop);
+  image(cap, 80 - 30, -80 + pizzaDrop/2.75);
 }

@@ -3,6 +3,9 @@ void drawGuy() {
   fill(255);
   noStroke();
   pushMatrix();
+      if(sceneCount == intro4) {
+          translate(-30, 20);
+      }
       translate(0, sittingOffset);
       pushMatrix();
           translate(head.x, head.y + 50);
@@ -112,9 +115,14 @@ void drawGuy() {
 
   popMatrix();
 
-  strokeWeight(37);
-  line(lHip.x, lHip.y, lKnee.x - sittingOffset/6, lKnee.y + sittingOffset/7); //left upper leg
-  line(lKnee.x- sittingOffset/6, lKnee.y+ sittingOffset/7, lFoot.x, lFoot.y); //left lower leg
-  line(rHip.x, rHip.y, rKnee.x + sittingOffset/6, rKnee.y + sittingOffset/7); //right upper leg
-  line(rKnee.x + sittingOffset/6, rKnee.y + sittingOffset/7, rFoot.x, rFoot.y); //right lower leg
+  pushMatrix();
+      if(sceneCount == intro4) {
+          translate(-30, 20);
+      }
+      strokeWeight(37);
+      line(lHip.x, lHip.y, lKnee.x - sittingOffset/6, lKnee.y + sittingOffset/7); //left upper leg
+      line(lKnee.x- sittingOffset/6, lKnee.y+ sittingOffset/7, lFoot.x, lFoot.y); //left lower leg
+      line(rHip.x, rHip.y, rKnee.x + sittingOffset/6, rKnee.y + sittingOffset/7); //right upper leg
+      line(rKnee.x + sittingOffset/6, rKnee.y + sittingOffset/7, rFoot.x, rFoot.y); //right lower leg
+  popMatrix();
 }

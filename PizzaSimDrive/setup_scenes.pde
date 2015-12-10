@@ -23,7 +23,11 @@ void setupIntro1() {
  
         headR = PI; 
         
-        intro1Text = "Meet Billy.\nBilly was just admitted to\nCal Poly as a Computer Science major.  Billy is super excited for all of his classes, especially\nCPE 123 with Dr. Wood!\nLet's check in with Billy now!";
+        font1 = createFont("ITCAvantGardeStd-Bk.otf", 46);
+        textFont(font1);
+        
+        
+        intro1Text = "Meet Billy.\nBilly was just admitted\nto Cal Poly as a Computer Science major and he's super excited for all of\nhis classes, especially\nCPE 123 with Dr. Wood!\nLet's check in with Billy now!";
 
         
         didRunIntro1Setup = true;
@@ -42,7 +46,7 @@ void setupIntro2() {
         
         headShakeR = 0;
         
-        intro2Text = "Oh no! Billy has no idea what he's\ndoing! His extremely supportive\nparents have told him that if he\ndoesn't get his act together,\nthey will stop paying for his\neducation! What will he do?";
+        intro2Text = "Oh no!\nBilly has no idea what he's doing! His extremely supportive parents have told him that if he\ndoesn't get his act\ntogether, they will stop\npaying for his education!\nWhat will he do?";
 
         didRunIntro2Setup = true;
     }
@@ -95,7 +99,7 @@ void setupIntro4() {
         headShakeR = -PI/20;
         waveR = 0;
         
-        intro4Text = "Meet Woodstock's Pizza's newest employee! Billy got a job at the\nbest pizza joint in SLO\nto pay his way through college.\nBilly works in the kitchen\nand is also a delivery boy.";
+        intro4Text = "Meet Woodstock's Pizza's\nnewest employee!\nBilly got a job at the best\npizza joint in SLO to pay\nhis way through college.\n \nBilly works in the kitchen\nand is also a delivery boy.";
 
         didRunIntro4Setup = true;
     }
