@@ -94,24 +94,23 @@ void drawDrive() {
 void checkLoc()
 {
   PVector car = myCar.getLoc();
-  //for (PVector p : delLoc)
-  //{
-
-  //  ////check if car is at delivery location
-  //  //if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2)
-  //  //{
-  //  //  println("PIZZA DELIVERED SUCCESSFULLY");
-  //  //  p.z = 3;
-  //  //  dispShop = true;
-  //  //}
-  //  ////check if car at shop
-  //  //if (dist(car.x, car.y, delLoc.get(0).x, delLoc.get(0).y) < 20 && dispShop)
-  //  //{
-  //  //  dispShop = false;
-  //  //  //delLoc.get((int)random(delLoc.size())).z = 2;
-  //  //}
-  //}
-  //  //tell user to return to screen area
+  for (PVector p : delLoc)
+  {
+    //check if car is at delivery location
+    if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2 && myCar.getVel() == 0)
+    {
+      println("PIZZA DELIVERED SUCCESSFULLY");
+      p.z = 3;
+      deliveriesToDo --;
+    }
+    //check if car at shop
+    if (dist(car.x, car.y, delLoc.get(0).x, delLoc.get(0).y) < 20 && deliveriesToDo == 0)
+    {
+      dispShop = false;
+      //delLoc.get((int)random(delLoc.size())).z = 2;
+    }
+  }
+  //tell user to return to screen area
   if (car.x > 1600 || car.x < 0 || car.y > 1066 || car.y < 0) {
     fill(50);
     rectMode(CORNERS);

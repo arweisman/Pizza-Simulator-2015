@@ -39,6 +39,11 @@ class Car {
     vel *= .96;
   }
 
+  public float getVel()
+  {
+    return vel;
+  }
+
   public void crash()
   {
     vel = 0;
