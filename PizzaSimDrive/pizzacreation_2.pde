@@ -64,6 +64,7 @@ void setupOrder()
   }
 }
 
+//draws all pizza scene elements
 void drawPizzaCreation() {
   background(#ED593E);
   image(pizzaImg, 0, 0);
