@@ -120,10 +120,6 @@ void checkLoc()
     text("Return to delivery area!", width*.45, height/2);
   }
   //check collisions
-  //for (PShape b : buildings)
-  //{
-  //  if (checkShape(car.x, car.y, b))
-  //  {
   println(collisionMap.get((int) car.x, (int) car.y));
   if (collisionMap.get((int)car.x, (int)car.y) != -1)
   {
@@ -134,7 +130,5 @@ void checkLoc()
     rect(width/4, height/4, 3*width/4, 3*height/4);
     fill(255);
     text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
-    //}
   }
 }
-//}
