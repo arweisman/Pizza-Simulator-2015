@@ -4,12 +4,11 @@ PImage tree[];
 PImage collisionMap;
 
 int grid; //num to simplify translations between graph paper and screen
-//building array
-ArrayList<PShape> buildings;
 //car
 Car myCar;
 //delivery locations array  X,Y,z: 1 = store, 2 = current delivery location, 3 = other
 ArrayList<PVector> delLoc;
+ArrayList deliveryLocations;
 //boolean to store if the shop should be displayed(depending
 //on if driver still must return
 boolean dispShop;
@@ -19,9 +18,8 @@ float rad, sRad;
 //key presses to store if key is held
 boolean w, a, s, d;
 
-float money;
+float money = 0;
 int deliveriesToDo;
-
 void setup() { //setup for titleScreen
   size(900, 600);
   background(255);
@@ -29,7 +27,6 @@ void setup() { //setup for titleScreen
   titleImage = loadImage("titleScreen.png");
   image(titleImage, 0, 0);
 }
-
 void setupDrive()
 {
   //city = loadImage("StitchedCity.png");
@@ -48,9 +45,8 @@ void setupDrive()
   collisionMap = loadImage("collisionMap.jpg");
 
   //car
-  myCar = new Car(new PVector(6.5*grid, 4.3*grid), PI, color(200, 0, 30));
-  //setupDelLoc();
-  //setupBuildings();
+  myCar = new Car(new PVector(494,232), PI, color(200, 0, 30));
+  setupDelLoc();
   dispShop = false;
   deliveriesToDo = 5;
 }
@@ -84,31 +80,24 @@ void drawDrive() {
   {
     image(tree[3], 0, 0);
   }
-
-
   myCar.updatemyCar();
-  //drawDelLoc();
+  drawDelLoc();
   checkLoc();
 }
 //Method to check if car is at delivery location,off screen, or buildings
 void checkLoc()
 {
   PVector car = myCar.getLoc();
-  for (PVector p : delLoc)
+  for (int i = 0; i < delLoc.size(); i++)
   {
+    PVector p = delLoc.get(i);
     //check if car is at delivery location
     if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2 && myCar.getVel() == 0)
     {
       println("PIZZA DELIVERED SUCCESSFULLY");
-      p.z = 3;
       deliveriesToDo --;
     }
-    //check if car at shop
-    if (dist(car.x, car.y, delLoc.get(0).x, delLoc.get(0).y) < 20 && deliveriesToDo == 0)
-    {
-      dispShop = false;
-      //delLoc.get((int)random(delLoc.size())).z = 2;
-    }
+    
   }
   //tell user to return to screen area
   if (car.x > 1600 || car.x < 0 || car.y > 1066 || car.y < 0) {
@@ -123,7 +112,7 @@ void checkLoc()
   if (collisionMap.get((int)car.x, (int)car.y) != -1)
   {
     println("YOU CRASHED");
-    //myCar.crash();
+    myCar.crash();
     fill(50);
     rectMode(CORNERS);
     rect(width/4, height/4, 3*width/4, 3*height/4);
