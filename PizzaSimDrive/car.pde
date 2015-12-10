@@ -15,6 +15,10 @@ class Car {
 
   public void draw()
   {
+    if(done)
+    {
+      vel = 0;
+    }
     fill(c);
     noStroke();
     pushMatrix();
@@ -32,7 +36,7 @@ class Car {
     rectMode(CORNERS);
     //rect(-5, -10, 5, 10);
     scale(0.8);
-    image(car, 0, -5);
+    image(car, -7, -12);
     popMatrix();    
     loc.x += vel*cos(angle);
     loc.y += vel*sin(angle);
@@ -60,6 +64,10 @@ class Car {
   }
   public PVector getLoc() {
     return loc;
+  }
+  public void rev()
+  {
+    vel*= -1;
   }
 
 

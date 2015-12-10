@@ -1,7 +1,6 @@
 void drawTitleScreen() {
   image(titleImage, 0, 0);
 }
-
 void drawIntro1() {
   image(intro1Image, 0, 0);
   fill(0, 128);
@@ -13,21 +12,19 @@ void drawIntro1() {
   fill(200);
   text(intro1Text, 200, 75, 625, 525);
 
-
   if (waveR < -1.0) {
     waveLeft = true;
   } 
   if (waveR > 0.3) {
     waveLeft = false;
   }
-
+  
   if (waveLeft) {
     waveR += 0.02;
   } else {
     waveR -= 0.02;
   }
-
-
+  
   if (headR < PI - PI/12) {
     headLeft = true;
   } 

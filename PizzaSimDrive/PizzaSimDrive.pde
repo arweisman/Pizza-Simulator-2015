@@ -2,6 +2,7 @@
 PImage city[];
 PImage tree[];
 PImage collisionMap;
+PImage logo;
 
 int grid; //num to simplify translations between graph paper and screen
 //car
@@ -20,9 +21,13 @@ float rad, sRad;
 boolean w, a, s, d;
 
 float money = 0;
+float carHP = 100;
 int deliveriesToDo;
+boolean done = false;
 //delivery time in seconds
 float deliveryTime = 0;
+//frame count at time of crash(to display warning temporarily)
+float crashFC;
 void setup() { //setup for titleScreen
   size(900, 600);
   background(255);
@@ -47,16 +52,20 @@ void setupDrive()
   tree[3] = loadImage("treeBottomRight.png");
   grid = 50;
   collisionMap = loadImage("collisionMap.jpg");
+  logo = loadImage("woodstockslogo.jpg");
+  logo.resize((int)(80*.9), (int)(64*.9));
 
   //car
   myCar = new Car(new PVector(494, 232), PI, color(200, 0, 30));
   setupDelLoc();
   dispShop = false;
-  deliveriesToDo = 5;
+  deliveriesToDo = 1;
 }
 void drawDrive() {
   updateScreen();
-  deliveryTime += 1;
+  if (!done) {
+    deliveryTime += 1;
+  }
 
   PVector c = myCar.getLoc();
   if (currentScreen == 1)
@@ -83,19 +92,21 @@ void drawDrive() {
   {
     image(tree[0], 0, 0);
     rect(0, 0, width+100, height+100);
+    image(logo, 490, 155);
   } else if (currentScreen == 2)
   {
-    rect(-100,0,width,height+100);
+    rect(-100, 0, width, height+100);
     image(tree[1], 0, 0);
   } else if (currentScreen == 3)
   {
-    rect(0,-100,width+100,height);
+    rect(0, -100, width+100, height);
     image(tree[2], 0, 0);
   } else
   {
-    rect(-100,height,width,-100);
+    rect(-100, height, width, -100);
     image(tree[3], 0, 0);
   }
+
   myCar.updatemyCar();
   drawDelLoc();
   checkLoc();
@@ -107,7 +118,8 @@ void drawDrive() {
   fill(255);
   textAlign(LEFT);
   text("Deliveries Left: "+deliveriesToDo, 50, height-8);
-  text("Time Elapsed: "+floor(deliveryTime/60)+":"+(int)(deliveryTime%60),200,height-8);
+  text("Time Elapsed: "+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), 200, height-8);
+  text("CAR HP: "+carHP, width-370, height-8);
   textAlign(RIGHT);
   text("$"+money, width-50, height-8);
 }
@@ -125,7 +137,7 @@ void checkLoc()
       deliveriesToDo --;
       deliveryLocations.remove(i);
       //add $7 per delivery plus tip with inverse correlation to time
-      money += (7 + (floor(100*map(deliveryTime,0,10800,10,0))/100));
+      money += (7 + (floor(100*map(deliveryTime, 0, 10800, 10, 0))/100));
     }
   }
   //tell user to return to screen area
@@ -141,13 +153,29 @@ void checkLoc()
   if (collisionMap.get((int)car.x, (int)car.y) != -1)
   {
     println("YOU CRASHED");
-    myCar.crash();
-    fill(50);
+    //myCar.crash();
+
+    crashFC = frameCount;
+    myCar.rev();
+    carHP -= 25;
+  }
+  if (crashFC > frameCount - (60*5)) {
     rectMode(CORNERS);
     noStroke();
+    fill(50, 50, 50, 100);
     rect(width/4, height/4, 3*width/4, 3*height/4);
     fill(255);
-    text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
+    text("YOU CRASHED!\n HP LOST: 25", width*.45, height/2);
+  }
+  if (carHP <= 0)
+  {
+    done = true;
+    fill(50, 50, 50, 200);
+    noStroke();
+    rect(100, 100, width-100, height-100);
+    fill(255);
+    textAlign(CENTER);
+    text("WHOOPS YOUR CAR BROKE\nYOU HAVE EARNED: $"+money+"\nIN A TIME OF"+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), width/2, (height/2)-75);
   }
 }
 void updateScreen()
@@ -166,4 +194,15 @@ void updateScreen()
   {
     currentScreen = 4;
   }
+}
+
+void drawFinal()
+{
+  done = true;
+  fill(50, 50, 50, 200);
+  noStroke();
+  rect(100, 100, width-100, height-100);
+  fill(255);
+  textAlign(CENTER);
+  text("CONGRADULATIONS YOU HAVE COMPLETED YOUR SHIFT\nYOU HAVE EARNED: $"+money+"\nIN A TIME OF"+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), width/2, (height/2)-75);
 }
