@@ -3,7 +3,7 @@ PImage pizzaImg, deliverImg, nextPizzaImg;
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
 int targetAmount = 7;
-int pizzaToMake = 5;
+int pizzaToMake = 5; //actual amount -1
 boolean shouldResetPizzaCount = false;
 
 int sideOfIngredient[]; //target side for ingredients of each type ("sideOfIngredient[0] = 0" means ingredient 0 is on the whole pizza, 1 left, etc)
@@ -34,7 +34,7 @@ void setupPizCre()
     ingName[5] = "Onion";
     
     if(shouldResetPizzaCount) {
-      pizzaToMake = 5;
+      pizzaToMake = 4; // actual amount -1 
     }
 
     didRunPizzaSetup = true;
