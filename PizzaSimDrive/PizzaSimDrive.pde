@@ -21,6 +21,8 @@ boolean w, a, s, d;
 
 float money = 0;
 int deliveriesToDo;
+//delivery time in seconds
+float deliveryTime = 0;
 void setup() { //setup for titleScreen
   size(900, 600);
   background(255);
@@ -54,6 +56,7 @@ void setupDrive()
 }
 void drawDrive() {
   updateScreen();
+  deliveryTime += 1;
 
   PVector c = myCar.getLoc();
   if (currentScreen == 1)
@@ -70,27 +73,43 @@ void drawDrive() {
     image(city[3], 0, 0);
   }
   myCar.draw();
+  //draw bounding box for delivery region
+  stroke(200, 1, 0);
+  noFill();
+  strokeWeight(7);
+  rectMode(CORNERS);
+
   if (currentScreen == 1)
   {
     image(tree[0], 0, 0);
+    rect(0, 0, width+100, height+100);
   } else if (currentScreen == 2)
   {
+    rect(-100,0,width,height+100);
     image(tree[1], 0, 0);
   } else if (currentScreen == 3)
   {
+    rect(0,-100,width+100,height);
     image(tree[2], 0, 0);
   } else
   {
+    rect(-100,height,width,-100);
     image(tree[3], 0, 0);
   }
   myCar.updatemyCar();
   drawDelLoc();
   checkLoc();
-  
-  fill(50,50,50,50);
+
+  fill(50, 50, 50, 150);
   rectMode(CORNERS);
-  rect(0,height,width,height-25);
-  
+  noStroke();
+  rect(0, height, width, height-25);
+  fill(255);
+  textAlign(LEFT);
+  text("Deliveries Left: "+deliveriesToDo, 50, height-8);
+  text("Time Elapsed: "+floor(deliveryTime/60)+":"+(int)(deliveryTime%60),200,height-8);
+  textAlign(RIGHT);
+  text("$"+money, width-50, height-8);
 }
 //Method to check if car is at delivery location,off screen, or buildings
 void checkLoc()
@@ -105,6 +124,8 @@ void checkLoc()
       println("PIZZA DELIVERED SUCCESSFULLY");
       deliveriesToDo --;
       deliveryLocations.remove(i);
+      //add $7 per delivery plus tip with inverse correlation to time
+      money += (7 + (floor(100*map(deliveryTime,0,10800,10,0))/100));
     }
   }
   //tell user to return to screen area
