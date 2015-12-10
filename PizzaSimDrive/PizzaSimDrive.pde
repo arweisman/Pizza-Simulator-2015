@@ -6,6 +6,7 @@ PImage collisionMap;
 int grid; //num to simplify translations between graph paper and screen
 //car
 Car myCar;
+int currentScreen=1;
 //delivery locations array  X,Y,z: 1 = store, 2 = current delivery location, 3 = other
 ArrayList<PVector> delLoc;
 ArrayList deliveryLocations;
@@ -27,6 +28,7 @@ void setup() { //setup for titleScreen
   titleImage = loadImage("titleScreen.png");
   image(titleImage, 0, 0);
 }
+
 void setupDrive()
 {
   //city = loadImage("StitchedCity.png");
@@ -45,21 +47,22 @@ void setupDrive()
   collisionMap = loadImage("collisionMap.jpg");
 
   //car
-  myCar = new Car(new PVector(494,232), PI, color(200, 0, 30));
+  myCar = new Car(new PVector(494, 232), PI, color(200, 0, 30));
   setupDelLoc();
   dispShop = false;
   deliveriesToDo = 5;
 }
 void drawDrive() {
-  //image(city, 0, 0);
+  updateScreen();
+
   PVector c = myCar.getLoc();
-  if (c.x <= 800  && c.y <= 533)
+  if (currentScreen == 1)
   {
     image(city[0], 0, 0);
-  } else if (c.x >= 800 && c.y <= 533)
+  } else if (currentScreen == 2)
   {
     image(city[1], 0, 0);
-  } else if (c.x < 800 && c.y > 533)
+  } else if (currentScreen ==3)
   {
     image(city[2], 0, 0);
   } else
@@ -67,13 +70,13 @@ void drawDrive() {
     image(city[3], 0, 0);
   }
   myCar.draw();
-  if (c.x <= 800  && c.y <= 533)
+  if (currentScreen == 1)
   {
     image(tree[0], 0, 0);
-  } else if (c.x >= 800 && c.y <= 533)
+  } else if (currentScreen == 2)
   {
     image(tree[1], 0, 0);
-  } else if (c.x < 800 && c.y > 533)
+  } else if (currentScreen == 3)
   {
     image(tree[2], 0, 0);
   } else
@@ -83,21 +86,26 @@ void drawDrive() {
   myCar.updatemyCar();
   drawDelLoc();
   checkLoc();
+  
+  fill(50,50,50,50);
+  rectMode(CORNERS);
+  rect(0,height,width,height-25);
+  
 }
 //Method to check if car is at delivery location,off screen, or buildings
 void checkLoc()
 {
   PVector car = myCar.getLoc();
-  for (int i = 0; i < delLoc.size(); i++)
+  //check if car is at delivery location and speed is less
+  for (int i = 0; i < deliveryLocations.size(); i++)
   {
-    PVector p = delLoc.get(i);
-    //check if car is at delivery location
-    if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2 && myCar.getVel() == 0)
+    PVector p = delLoc.get((int)deliveryLocations.get(i));
+    if (dist(p.x, p.y, car.x, car.y) < 15 && myCar.getVel() < 1)
     {
       println("PIZZA DELIVERED SUCCESSFULLY");
       deliveriesToDo --;
+      deliveryLocations.remove(i);
     }
-    
   }
   //tell user to return to screen area
   if (car.x > 1600 || car.x < 0 || car.y > 1066 || car.y < 0) {
@@ -108,15 +116,33 @@ void checkLoc()
     text("Return to delivery area!", width*.45, height/2);
   }
   //check collisions
-  println(collisionMap.get((int) car.x, (int) car.y));
+  //println(collisionMap.get((int) car.x, (int) car.y));
   if (collisionMap.get((int)car.x, (int)car.y) != -1)
   {
     println("YOU CRASHED");
     myCar.crash();
     fill(50);
     rectMode(CORNERS);
+    noStroke();
     rect(width/4, height/4, 3*width/4, 3*height/4);
     fill(255);
     text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
+  }
+}
+void updateScreen()
+{
+  PVector c = myCar.getLoc();
+  if (c.x <= 800  && c.y <= 533)
+  {
+    currentScreen = 1;
+  } else if (c.x >= 800 && c.y <= 533)
+  {
+    currentScreen = 2;
+  } else if (c.x < 800 && c.y > 533)
+  {
+    currentScreen = 3;
+  } else
+  {
+    currentScreen = 4;
   }
 }

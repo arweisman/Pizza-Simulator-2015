@@ -65,24 +65,13 @@ void setupDelLoc()
 }
 void drawDelLoc()
 {
-  for (PVector p : delLoc)
+  //loop through array of current delivery locations and draw ellipses at the appropriate locations
+  for (int i = 0; i < deliveryLocations.size(); i++)
   {
+    PVector p = delLoc.get((int)deliveryLocations.get(i));
+    stroke(255,255,0);
     noFill();
     strokeWeight(1);
-    if (p.z == 1.0)
-    {
-      if (dispShop) {
-        stroke(255, 255, 0);
-      } else {
-        noFill();
-      }
-    } else if (p.z == 2) {
-      stroke(200, 0, 0);
-    } else
-    {
-      noStroke();
-      //stroke(20, 0, 200);
-    }
     //animation stuff
     rad +=sRad;
     if (rad > 15) {
@@ -91,6 +80,15 @@ void drawDelLoc()
     if (rad < 5) {
       sRad = .007;
     }
+    pushMatrix();
+    if(myCar.getLoc().x > 800){
+      translate(-700,0);
+    }
+    if(myCar.getLoc().y > 533)
+    {
+      translate(0,-436);
+    }
     ellipse(p.x, p.y, rad, rad);
+    popMatrix();
   }
 }
