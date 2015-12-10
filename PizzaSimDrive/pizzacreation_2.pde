@@ -21,7 +21,7 @@ void setupPizCre()
     ingName = new String[totalIngredientTypes];
     ingredientLoc = new ArrayList<PVector>();
 
-    pizzaImg = loadImage("pizza_tray-receipt.png");
+    pizzaImg = loadImage("pizza_tray-receipt_2.png");
     deliverImg = loadImage("deliver.png");
 
     ingName[0] = "Olive";
