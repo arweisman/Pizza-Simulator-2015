@@ -1,3 +1,5 @@
+//separated draw methods for each scene
+
 void drawTitleScreen() {
   image(titleImage, 0, 0);
 }

@@ -1,3 +1,5 @@
+//separate setup methods for each scene
+
 void setupIntro1() {
   if (!didRunIntro1Setup) {
     intro1Image = loadImage("calpolybgblur.png");

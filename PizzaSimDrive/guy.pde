@@ -1,3 +1,5 @@
+//hierarchical animation for Billy
+
 void drawGuy() {
 
   fill(255);
