@@ -1,9 +1,10 @@
-PImage pizzaImg, deliverImg;
+PImage pizzaImg, deliverImg, nextPizzaImg;
 
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
 int targetAmount = 7;
 int pizzaToMake = 5;
+boolean shouldResetPizzaCount = false;
 
 int sideOfIngredient[]; //target side for ingredients of each type ("sideOfIngredient[0] = 0" means ingredient 0 is on the whole pizza, 1 left, etc)
 int ingPerSide[]; //number of ingredients on each side of pizza ("ingPerSide[0] = 3" means there are 3 ingredient types on side 0)
@@ -23,6 +24,7 @@ void setupPizCre()
 
     pizzaImg = loadImage("pizza_tray-receipt_2.png");
     deliverImg = loadImage("deliver.png");
+    nextPizzaImg = loadImage("nextPizza.png");
 
     ingName[0] = "Olive";
     ingName[1] = "Pepperoni";
@@ -30,6 +32,10 @@ void setupPizCre()
     ingName[3] = "Mushroom";
     ingName[4] = "Pineapple";
     ingName[5] = "Onion";
+    
+    if(shouldResetPizzaCount) {
+      pizzaToMake = 5;
+    }
 
     didRunPizzaSetup = true;
     setupOrder();
@@ -119,11 +125,23 @@ void drawPizzaCreation() {
       done = false;
     }
   }
-  if (done) {
+  if (done && pizzaToMake == 0) {
     image(deliverImg, width-190, height-100);    
     if (mousePressed) {
       if (mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10) {
+        shouldResetPizzaCount = true;
+        didRunPizzaSetup = false;
         sceneCount = driveScene;
+      }
+    }
+  }
+  else if (done && pizzaToMake > 0) {
+     image(nextPizzaImg, width-190, height-100);    
+    if (mousePressed) {
+      if (mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10) {
+        println("pizzas left: " + pizzaToMake);
+        didRunPizzaSetup = false;
+        pizzaToMake--;
       }
     }
   }
