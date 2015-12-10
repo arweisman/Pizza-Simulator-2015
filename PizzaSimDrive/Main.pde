@@ -17,12 +17,16 @@ void draw() {
 
   case intro3:
     setupIntro3();
-    drawIntro3();
     break;
 
   case intro4:
     setupIntro4();
     drawIntro4();
+    break;
+    
+  case intro5:
+    setupIntro5();
+    drawIntro5();
     break;
 
   case pizzaScene:

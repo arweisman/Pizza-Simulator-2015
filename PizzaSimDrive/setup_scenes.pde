@@ -105,6 +105,24 @@ void setupIntro4() {
   }
 }
 
+void setupIntro5() {
+  if (!didRunIntro5Setup) {
+    intro5Image = loadImage("kitchenblur.png");
+    image(intro5Image, 0, 0);
+    
+    intro5InstImage1 = loadImage("intro5Inst1.PNG");
+    intro5InstImage2 = loadImage("intro5Inst2.PNG");
+    //intro5InstImage3 = loadImage("intro5Inst3.png");
+    
+    intro5Text1 = "Just in case you forgot your job, Billy...";
+    intro5Text2 = "First, make the pizzas.  Following the order on the receipt, click on each ingredient and then on the pizza to add it.  The topping will turn green once there is enough on the pizza.  Click the 'next' button to receive another order.";
+    intro5Text3 = "Once all of the pizzas have been made, it's time to drive!  Use the WASD keys or arrow keys to drive to each customer's house (marked with a yellow circle), and then back to restaurant.";
+    intro5Text4 = "Remember, you'll get bigger tips if you complete these tasks expediently!";
+    
+    didRunIntro5Setup = true;
+  }
+}
+
 void setupDriveScene() {
   if (!didRunDriveSetup) {
     setupDrive();

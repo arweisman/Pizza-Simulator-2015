@@ -100,9 +100,6 @@ void drawIntro2() {
   image(desk, -210 + sittingOffset*1.65, 425);
 }
 
-void drawIntro3() {
-}
-
 void drawIntro4() {
   image(intro4Image, 0, 0);
   fill(0, 128);
@@ -121,4 +118,27 @@ void drawIntro4() {
   } 
   image(pizza, 130 - 30, -180 + pizzaDrop);
   image(cap, 80 - 30, -80 + pizzaDrop/2.75);
+}
+
+void drawIntro5() {
+  image(intro5Image, 0, 0);
+  fill(0, 128);
+  noStroke();
+  rect(50, 50, 800, 500, 25);
+  
+  image(intro5InstImage1, 75, 135);
+  image(intro5InstImage2, 640, 315);
+
+  textAlign(RIGHT);
+  textSize(24);
+  fill(200);
+  text(intro5Text1, 50, 75, 765, 475);
+  textAlign(LEFT);
+  text(intro5Text2, 285, 125, 550, 475);
+  textAlign(RIGHT);
+  text(intro5Text3, 60, 300, 550, 550);
+  textSize(18);
+  textAlign(CENTER);
+  text(intro5Text4, 50, 525, 765, 475);
+  
 }
