@@ -68,7 +68,7 @@ class Car {
   public void rev()
   {
     vel*= -1;
-  }
+  
 
 
   void updatemyCar()
@@ -108,6 +108,22 @@ void keyPressed()
   {
     d = true;
   }
+  if (keyCode == UP) // 'w'
+  {
+    w = true;
+  }
+  if (keyCode == DOWN) // 's'
+  {
+    s = true;
+  }
+  if (keyCode == LEFT) //'a'
+  {
+    a = true;
+  }
+  if (keyCode == RIGHT) //'d'
+  {
+    d = true;
+  }
 }
 void keyReleased()
 {
@@ -124,6 +140,22 @@ void keyReleased()
     a = false;
   }
   if (key == 100) //'d'
+  {
+    d = false;
+  }
+  if (keyCode == UP) // 'w'
+  {
+    w = false;
+  }
+  if (keyCode == DOWN) // 's'
+  {
+    s = false;
+  }
+  if (keyCode == LEFT) //'a'
+  {
+    a = false;
+  }
+  if (keyCode == RIGHT) //'d'
   {
     d = false;
   }

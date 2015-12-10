@@ -2,7 +2,7 @@ PImage pizzaImg, deliverImg;
 
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
-int targetAmount = 0;
+int targetAmount = 7;
 int pizzaToMake = 5;
 
 int sideOfIngredient[]; //target side for ingredients of each type ("sideOfIngredient[0] = 0" means ingredient 0 is on the whole pizza, 1 left, etc)

@@ -59,7 +59,7 @@ void setupDrive()
   myCar = new Car(new PVector(494, 232), PI, color(200, 0, 30));
   setupDelLoc();
   dispShop = false;
-  deliveriesToDo = 1;
+  deliveriesToDo = 5;
 }
 void drawDrive() {
   updateScreen();
@@ -119,7 +119,7 @@ void drawDrive() {
   textAlign(LEFT);
   text("Deliveries Left: "+deliveriesToDo, 50, height-8);
   text("Time Elapsed: "+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), 200, height-8);
-  text("CAR HP: "+carHP, width-370, height-8);
+  text("CAR HP: "+((int)carHP), width-370, height-8);
   textAlign(RIGHT);
   text("$"+money, width-50, height-8);
 }
@@ -175,7 +175,7 @@ void checkLoc()
     rect(100, 100, width-100, height-100);
     fill(255);
     textAlign(CENTER);
-    text("WHOOPS YOUR CAR BROKE\nYOU HAVE EARNED: $"+money+"\nIN A TIME OF"+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), width/2, (height/2)-75);
+    text("WHOOPS YOUR CAR BROKE\nYOU HAVE EARNED: $"+money+"\nIN A TIME OF: "+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), width/2, (height/2)-75);
   }
 }
 void updateScreen()
