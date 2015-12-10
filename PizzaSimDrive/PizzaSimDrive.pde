@@ -1,6 +1,7 @@
 //PImage city;
 PImage city[];
 PImage tree[];
+PImage collisionMap;
 
 int grid; //num to simplify translations between graph paper and screen
 //building array
@@ -19,6 +20,7 @@ float rad, sRad;
 boolean w, a, s, d;
 
 float money;
+int deliveriesToDo;
 
 void setup() { //setup for titleScreen
   size(900, 600);
@@ -43,12 +45,14 @@ void setupDrive()
   tree[2] = loadImage("treeBottomLeft.png");
   tree[3] = loadImage("treeBottomRight.png");
   grid = 50;
+  collisionMap = loadImage("collisionMap.jpg");
 
   //car
   myCar = new Car(new PVector(6.5*grid, 4.3*grid), PI, color(200, 0, 30));
   //setupDelLoc();
   //setupBuildings();
   dispShop = false;
+  deliveriesToDo = 5;
 }
 void drawDrive() {
   //image(city, 0, 0);
@@ -84,30 +88,30 @@ void drawDrive() {
 
   myCar.updatemyCar();
   //drawDelLoc();
-  //checkLoc();
+  checkLoc();
 }
 //Method to check if car is at delivery location,off screen, or buildings
 void checkLoc()
 {
   PVector car = myCar.getLoc();
-  for (PVector p : delLoc)
-  {
+  //for (PVector p : delLoc)
+  //{
 
-    //check if car is at delivery location
-    if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2)
-    {
-      println("PIZZA DELIVERED SUCCESSFULLY");
-      p.z = 3;
-      dispShop = true;
-    }
-    //check if car at shop
-    if (dist(car.x, car.y, delLoc.get(0).x, delLoc.get(0).y) < 20 && dispShop)
-    {
-      dispShop = false;
-      //delLoc.get((int)random(delLoc.size())).z = 2;
-    }
-  }
-  //tell user to return to screen area
+  //  ////check if car is at delivery location
+  //  //if ((dist(car.x, car.y, p.x, p.y) < 20) && p.z == 2)
+  //  //{
+  //  //  println("PIZZA DELIVERED SUCCESSFULLY");
+  //  //  p.z = 3;
+  //  //  dispShop = true;
+  //  //}
+  //  ////check if car at shop
+  //  //if (dist(car.x, car.y, delLoc.get(0).x, delLoc.get(0).y) < 20 && dispShop)
+  //  //{
+  //  //  dispShop = false;
+  //  //  //delLoc.get((int)random(delLoc.size())).z = 2;
+  //  //}
+  //}
+  //  //tell user to return to screen area
   if (car.x > 1600 || car.x < 0 || car.y > 1066 || car.y < 0) {
     fill(50);
     rectMode(CORNERS);
@@ -116,17 +120,21 @@ void checkLoc()
     text("Return to delivery area!", width*.45, height/2);
   }
   //check collisions
-  for (PShape b : buildings)
+  //for (PShape b : buildings)
+  //{
+  //  if (checkShape(car.x, car.y, b))
+  //  {
+  println(collisionMap.get((int) car.x, (int) car.y));
+  if (collisionMap.get((int)car.x, (int)car.y) != -1)
   {
-    if (checkShape(car.x, car.y, b))
-    {
-      println("YOU CRASHED");
-      myCar.crash();
-      fill(50);
-      rectMode(CORNERS);
-      rect(width/4, height/4, 3*width/4, 3*height/4);
-      fill(255);
-      text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
-    }
+    println("YOU CRASHED");
+    //myCar.crash();
+    fill(50);
+    rectMode(CORNERS);
+    rect(width/4, height/4, 3*width/4, 3*height/4);
+    fill(255);
+    text("YOU CRASHED!\nGAME OVER", width*.45, height/2);
+    //}
   }
 }
+//}

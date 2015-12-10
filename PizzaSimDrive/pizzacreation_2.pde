@@ -3,7 +3,7 @@ PImage pizzaImg, deliverImg;
 int ingredientSelected; // 0 = first ingredient, 1 = second ingredient, etc.
 int totalIngredientTypes = 6;
 int targetAmount = 0;
-
+int pizzaToMake = 5;
 
 int sideOfIngredient[]; //target side for ingredients of each type ("sideOfIngredient[0] = 0" means ingredient 0 is on the whole pizza, 1 left, etc)
 int ingPerSide[]; //number of ingredients on each side of pizza ("ingPerSide[0] = 3" means there are 3 ingredient types on side 0)
@@ -64,28 +64,10 @@ void drawPizzaCreation() {
   textAlign(LEFT);
 
   //draw a pizza (circle)
-  fill(#E0CA78);
+  //fill(#E0CA78);
   noStroke();
-  //ellipse(width/2, height/2, height*0.8, height*0.8);
 
-  //--------------DRAW INTERFACE----------------
-  //fill(#EDB03E);
-  //rect(10, 10, 150, height-20);
-  //fill(255);
-  //rect(width-200, 10, 190, height*.75);
-
-  //beginShape();
-  //vertex(width-10, height*.75+10);
-  //for (int i = 0; i < 39; i++) {
-  //  if (i%2 == 0) {
-  //    vertex(width-10-5*i, height*.75+20);
-  //  } else {
-  //    vertex(width-10-5*i, height*.75+12);
-  //  }
-  //}
-  //vertex(width-200, height*.75+10);
-  //endShape();
-
+  //Draw Interface
   fill(220);
   ellipse(width-180, 160, 20, 20);
   ellipse(width-180, 290, 20, 20);  
@@ -138,25 +120,13 @@ void drawPizzaCreation() {
     }
   }
   if (done) {
-
-    //fill(0, 150, 0);    
-    //rect(width-160, height-70, 150, 60);
-    //fill(255);
-    //textSize(12);
-    //text("Close Enough!", width-150, height-50);
-    //textSize(30);
-    //text("Deliver >", width-150, height-20);
-
     image(deliverImg, width-190, height-100);    
-
     if (mousePressed) {
       if (mouseX > width-160 && mouseX < width-10 && mouseY > height-70 && mouseY < height-10) {
         sceneCount = driveScene;
       }
     }
   }
-
-
   //--------------INGREDIENT LOOP----------------
   for (int i = 0; i < totalIngredientTypes; i++) {
 
@@ -172,7 +142,6 @@ void drawPizzaCreation() {
       noStroke();
     }
   }
-
   //place selected ingredients at array of locations on pizza
   for (PVector p : ingredientLoc) {
     if (p.z == 0) {
@@ -196,7 +165,6 @@ void drawPizzaCreation() {
   }
   drawArm();
 }
-
 void mouseClickedForPizza() {
   //store a new ingredient location and ingredient type each click
   if (dist(mouseX, mouseY, width/2, height/2) < height * 0.4) {

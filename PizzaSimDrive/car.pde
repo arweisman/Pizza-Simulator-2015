@@ -31,7 +31,7 @@ class Car {
     rotate(angle-PI/2);
     rectMode(CORNERS);
     //rect(-5, -10, 5, 10);
-    scale(1.1);
+    scale(0.8);
     image(car, 0, -5);
     popMatrix();    
     loc.x += vel*cos(angle);
@@ -63,7 +63,7 @@ class Car {
     if (!isCrashed) {
       if (w)
       {
-        myCar.accelerate(.1);
+        myCar.accelerate(.04);
       }
       if (a) {
         myCar.turn(-PI/64);

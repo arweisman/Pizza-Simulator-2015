@@ -189,3 +189,22 @@ PVector calculateMoveDistance(PVector initialPos, PVector finalPos, float frameD
  delLoc[47] = new PVector(741, 208, 3);
  delLoc[48] = new PVector(764, 207, 3);
  delLoc[49] = new PVector(863, 206, 3);*/
+//ellipse(width/2, height/2, height*0.8, height*0.8);
+
+//--------------DRAW INTERFACE----------------
+//fill(#EDB03E);
+//rect(10, 10, 150, height-20);
+//fill(255);
+//rect(width-200, 10, 190, height*.75);
+
+//beginShape();
+//vertex(width-10, height*.75+10);
+//for (int i = 0; i < 39; i++) {
+//  if (i%2 == 0) {
+//    vertex(width-10-5*i, height*.75+20);
+//  } else {
+//    vertex(width-10-5*i, height*.75+12);
+//  }
+//}
+//vertex(width-200, height*.75+10);
+//endShape();
