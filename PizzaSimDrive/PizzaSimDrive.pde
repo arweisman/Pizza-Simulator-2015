@@ -205,5 +205,5 @@ void drawFinal()
   rect(100, 100, width-100, height-100);
   fill(255);
   textAlign(CENTER);
-  text("CONGRADULATIONS YOU HAVE COMPLETED YOUR SHIFT\nYOU HAVE EARNED: $"+money+"\nIN A TIME OF"+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), width/2, (height/2)-75);
+  text("CONGRATULATIONS YOU HAVE COMPLETED YOUR SHIFT\nYOU HAVE EARNED: $"+money+"\nIN A TIME OF"+floor(deliveryTime/60)+":"+(int)(deliveryTime%60), width/2, (height/2)-75);
 }
